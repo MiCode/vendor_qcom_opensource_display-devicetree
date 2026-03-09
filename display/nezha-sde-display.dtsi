@@ -1,0 +1,113 @@
+#include "canoe-sde-display.dtsi"
+#include "dsi-panel-p1-42-0d-0b-dsc-cmd.dtsi"
+#include "dsi-panel-p1-42-0d-0b-p10-dsc-cmd.dtsi"
+#include "dsi-panel-p1-42-0d-0b-p11-dsc-cmd.dtsi"
+
+&soc {
+	display_panel_vddd_p1: display_panel_vddd_p1 {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vddd_p1";
+		regulator-min-microvolt = <1060000>;
+		regulator-max-microvolt = <1060000>;
+		gpio = <&tlmm 90 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+	display_panel_vci_p1: display_panel_vci_p1 {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vci_p1";
+		regulator-min-microvolt = <3000000>;
+		regulator-max-microvolt = <3000000>;
+		gpio = <&tlmm 108 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	dsi_panel_pwr_supply_p1: dsi_panel_pwr_supply_p1 {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+			qcom,supply-post-off-sleep = <0>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1060000>;
+			qcom,supply-max-voltage = <1060000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <3>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <18>;
+			qcom,supply-post-off-sleep = <3>;
+		};
+	};
+};
+&dsi_nt37801_amoled_video {
+       qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+       qcom,panel-sec-supply-entries = <&dsi_panel_pwr_supply>;
+       qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+       qcom,mdss-dsi-sec-bl-pmic-control-type = "bl_ctrl_dcs";
+       qcom,mdss-dsi-bl-min-level = <10>;
+       qcom,mdss-dsi-bl-max-level = <4095>;
+       qcom,mdss-brightness-max-level = <8191>;
+       qcom,mdss-dsi-bl-inverted-dbv;
+       qcom,platform-reset-gpio = <&tlmm 98 0>;
+       qcom,platform-sec-reset-gpio = <&tlmm 97 0>;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_p1_42_0d_0b_dsc_cmd>;
+	vddd-supply = <&display_panel_vddd_p1>;
+	vddio-supply = <&L12B>;
+	vci-supply = <&display_panel_vci_p1>;
+	pinctrl-names = "panel_active", "panel_suspend";
+	pinctrl-0 = <&sde_dsi_active &sde_te_active>;
+	pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
+
+	/delete-property/ tvdd-supply;
+};
+
+&sde_dsi1 {
+	status = "disabled";
+};
+
+&sde_dp {
+	qcom,max-lclk-frequency-khz = <540000>;
+	status = "ok";
+};
+
+&mdss_mdp {
+	connectors = <&sde_dsi &smmu_sde_unsec &smmu_sde_sec &sde_wb0 &sde_wb1 &sde_dp>;
+};
+
+&qupv3_se19_spi {
+	synaptics_tcm@0 {
+		panel = <&dsi_p1_42_0d_0b_dsc_cmd
+			&dsi_p1_42_0d_0b_p10_dsc_cmd
+			&dsi_p1_42_0d_0b_p11_dsc_cmd
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+};
+
+&soc {
+	charge_screen: charge-screen {
+		panel  = <&dsi_p1_42_0d_0b_dsc_cmd
+			&dsi_p1_42_0d_0b_p10_dsc_cmd
+			&dsi_p1_42_0d_0b_p11_dsc_cmd
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+};

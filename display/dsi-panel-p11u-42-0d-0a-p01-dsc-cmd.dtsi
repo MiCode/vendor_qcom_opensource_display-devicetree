@@ -1,0 +1,517 @@
+&mdss_mdp {
+	dsi_p11u_42_0d_0a_p01_dsc_cmd: qcom,mdss_dsi_p11u_42_0d_0a_p01_dsc_cmd {
+		qcom,mdss-dsi-panel-name = "xiaomi p11u 42 0d 0a cmd mode dsc dsi panel";
+		qcom,mdss-dsi-panel-type = "dsi_cmd_mode";
+		qcom,mdss-dsi-panel-physical-type = "oled";
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-bpp = <30>;
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+                qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-reset-sequence =<1 1>, <0 5>, <1 10>;
+		qcom,mdss-pan-physical-width-dimension = <727>;
+		qcom,mdss-pan-physical-height-dimension = <1580>;
+		qcom,mdss-dsi-te-pin-select = <1>;
+		qcom,mdss-dsi-wr-mem-start = <0x2c>;
+		qcom,mdss-dsi-wr-mem-continue = <0x3c>;
+		qcom,mdss-dsi-te-dcs-command = <1>;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-bl-inverted-dbv;
+		qcom,bl-update-flag = "delay_until_first_frame";
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <14500 15500 32000
+			17000 15500 30000 8000 3000>;
+		qcom,mdss-dsi-panel-peak-brightness = <32000000>;
+		qcom,mdss-dsi-panel-blackness-level = <3230>;
+		qcom,mdss-dsi-dma-schedule-line = <1>;
+		qcom,mdss-dsi-dma-schedule-window = <50>;
+		mi,sf-set-doze-brightness;
+
+		qcom,mdss-dsi-display-timings {
+			timing@wqhd_normal_60hz_index_00 {
+				#include "dsi-panel-p11u-42-0d-0a-p01-dsc-cmd-common.dtsi"
+				cell-index = <1>;
+				qcom,mdss-dsi-panel-framerate = <60>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				mi,mdss-dsi-csc-by-temper-comp-off-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-off-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-32-36-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 01
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-32-36-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-36-40-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 03
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-36-40-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-40-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 05
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-40-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-45-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 07
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-45-mode-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//60hz
+					15 00 00 00 00 00 02 6C 01
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//60hz
+					15 00 00 00 00 00 02 6C 01
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-on-command = [
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					//Error flag
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 02
+					//Reload gamma
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 40 00 00 05 EA 0F 41 00 08
+					//Crosstalk ON
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 01
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 A2
+					//3DDR OFF
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 00
+					//Save power consumption
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					//Optimize exit from ULPS
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					//VESA Enable
+					39 00 00 40 00 00 02 03 01
+					//TE ON
+					39 00 00 40 00 00 02 35 00
+					//Brightness Control
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					//3DDR temperature setting
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					//Fps setting
+					39 00 00 40 00 00 02 6C 01
+					39 00 00 40 00 00 02 6D 00
+					//VESA setting
+					39 00 00 40 00 00 81 70 12 00 00 AB 30 80 0A 30 04 B0 00 10 02 58 02 58 02 00 02 2C 00 20 01 98 00 08 00 0C 06 67 05 B9 18 00 10 F0 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					//PMIC1
+					39 00 00 40 00 00 02 72 00
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					//VGLR drop
+					39 00 00 40 00 00 02 CF 87
+					39 00 00 40 00 00 03 F0 AA 1E
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 C8 10
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+			timing@wqhd_normal_120hz_index_01 {
+				#include "dsi-panel-p11u-42-0d-0a-p01-dsc-cmd-common.dtsi"
+				cell-index = <0>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				mi,mdss-dsi-csc-by-temper-comp-off-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-off-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-32-36-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 01
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-32-36-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-36-40-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 02
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-36-40-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-40-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 04
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-40-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-45-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 06
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-45-mode-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//60hz
+					15 00 00 00 00 00 02 6C 00
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//120hz
+					15 00 00 00 00 00 02 6C 00
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-on-command = [
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					//Error flag
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 02
+					//Reload gamma
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 40 00 00 05 EA 0F 41 00 08
+					//Crosstalk ON
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 01
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 A2
+					//3DDR OFF
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 00
+					//Save power consumption
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					//Optimize exit from ULPS
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					//VESA Enable
+					39 00 00 40 00 00 02 03 01
+					//TE ON
+					39 00 00 40 00 00 02 35 00
+					//Brightness Control
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					//3DDR temperature setting
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					//Fps setting
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 6D 00
+					//VESA setting
+					39 00 00 40 00 00 81 70 12 00 00 AB 30 80 0A 30 04 B0 00 10 02 58 02 58 02 00 02 2C 00 20 01 98 00 08 00 0C 06 67 05 B9 18 00 10 F0 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					//PMIC1
+					39 00 00 40 00 00 02 72 00
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					//VGLR drop
+					39 00 00 40 00 00 02 CF 87
+					39 00 00 40 00 00 03 F0 AA 1E
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 C8 10
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+			timing@wqhd_normal_90hz_index_02 {
+				#include "dsi-panel-p11u-42-0d-0a-p01-dsc-cmd-common.dtsi"
+				cell-index = <2>;
+				qcom,mdss-dsi-panel-framerate = <90>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				mi,mdss-dsi-csc-by-temper-comp-off-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-off-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-32-36-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 01
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-32-36-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-36-40-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 02
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-36-40-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-40-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 04
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-40-mode-command-state = "dsi_hs_mode";
+
+				mi,mdss-dsi-csc-by-temper-comp-45-mode-command = [
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 02 6B 06
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				mi,mdss-dsi-csc-by-temper-comp-45-mode-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//90hz
+					15 00 00 00 00 00 02 6C 02
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//90hz
+					15 00 00 00 00 00 02 6C 02
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-on-command = [
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					//Error flag
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 02
+					//Reload gamma
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 40 00 00 05 EA 0F 41 00 08
+					//Crosstalk ON
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 01
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 A2
+					//3DDR OFF
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 00
+					//Save power consumption
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					//Optimize exit from ULPS
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					//VESA Enable
+					39 00 00 40 00 00 02 03 01
+					//TE ON
+					39 00 00 40 00 00 02 35 00
+					//Brightness Control
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					//3DDR temperature setting
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					//Fps setting
+					39 00 00 40 00 00 02 6C 02
+					39 00 00 40 00 00 02 6D 00
+					//VESA setting
+					39 00 00 40 00 00 81 70 12 00 00 AB 30 80 0A 30 04 B0 00 10 02 58 02 58 02 00 02 2C 00 20 01 98 00 08 00 0C 06 67 05 B9 18 00 10 F0 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					//PMIC1
+					39 00 00 40 00 00 02 72 00
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					//VGLR drop
+					39 00 00 40 00 00 02 CF 87
+					39 00 00 40 00 00 03 F0 AA 1E
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 C8 10
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+		};
+	};
+};
+&dsi_p11u_42_0d_0a_p01_dsc_cmd {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_p11u>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <5>;
+	qcom,mdss-dsi-bl-max-level = <16383>;
+	qcom,bl-dsc-cmd-state = "dsi_hs_mode";
+	qcom,mdss-brightness-max-level = <16383>;
+	qcom,mdss-brightness-init-level = <858>;
+	qcom,platform-reset-gpio = <&tlmm 98 0>;
+	//qcom,platform-pmic-reset-gpio = <&tlmm 171 0>;
+	mi,panel-nt336-ason08-gpio  = <&tlmm 212 0>;
+	mi,panel-nt336-ason18-gpio  = <&tlmm 214 0>;
+
+	mi,panel-id = <0x50313155 0x00420D0A>;
+	mi,panel-on-dimming-delay = <120>;
+
+	/* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+	mi,esd-err-irq-gpio = <&tlmm 97 0x2008>;
+	mi,esd-err-irq-gpio-flag = <0x2008>;
+
+	mi,mdss-dsi-panel-wp-read-command = [06 01 00 01 00 00 01 5C];
+	mi,mdss-dsi-panel-wp-read-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-wp-read-length = <8>;
+
+	mi,mdss-dsi-panel-cell-id-read-command = [06 01 00 01 00 00 01 5A];
+	mi,mdss-dsi-panel-cell-id-read-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-cell-id-read-length = <14>;
+
+	mi,mdss-dsi-fac-bl-max-level = <6750>;
+	mi,mdss-fac-brightness-max-level = <6750>;
+	mi,flatmode-status-check-enabled;
+	mi,mdss-dsi-panel-flatmode-status-offset-command = [
+		39 00 00 00 00 00 03 F0 AA 11
+	];
+	mi,mdss-dsi-panel-flatmode-status-offset-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-flatmode-status-command = [
+		06 01 00 01 00 00 01 D5
+	];
+	mi,mdss-dsi-panel-flatmode-status-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-flatmode-status-read-length = <1>;
+	mi,mdss-dsi-panel-flatmode-on-status-value = <0x13>;
+
+	mi,doze-hbm-dbv-level = <609>;
+	mi,doze-lbm-dbv-level = <46>;
+	mi,ddic-round-corner-enabled;
+
+	mi,max-brightness-normal = <5090>;
+
+	mi,panel-build-id-read-needed;
+	mi,panel-build-id-read-length = <1>;
+	mi,mdss-dsi-panel-build-id-read-command = [06 01 00 01 00 00 01 DA];
+	mi,mdss-dsi-panel-build-id-read-command-state = "dsi_hs_mode";
+
+	qcom,ulps-enabled;
+	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+	qcom,mdss-dsi-clk-strength = <0xFF>;
+};

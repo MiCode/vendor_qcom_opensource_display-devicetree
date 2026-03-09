@@ -1,0 +1,169 @@
+#include "canoe-sde-display.dtsi"
+#include "dsi-panel-p3-42-02-0a-p10-dsc-vhm.dtsi"
+#include "dsi-panel-p3-42-02-0a-p11-dsc-vhm.dtsi"
+#include "dsi-panel-p3-42-02-0a-p12-dsc-vhm.dtsi"
+#include "dsi-panel-p3-42-02-0a-p12-2-dsc-vhm.dtsi"
+#include "dsi-panel-p3-42-02-0a-p20-dsc-vhm.dtsi"
+#include "dsi-panel-p3-42-02-0a-p21-dsc-vhm.dtsi"
+#include "dsi-panel-p3-42-02-0a-mp-dsc-vhm.dtsi"
+#include "dsi-panel-p3-42-02-0a-mp-dsc-vhm-pmic-b.dtsi"
+
+&soc {
+	display_panel_vddd_p3: display_panel_vddd_p3 {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vddd_p3";
+		regulator-min-microvolt = <1060000>;
+		regulator-max-microvolt = <1060000>;
+		gpio = <&tlmm 90 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	dsi_panel_pwr_supply_p3: dsi_panel_pwr_supply_p3 {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+			qcom,supply-post-off-sleep = <0>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1060000>;
+			qcom,supply-max-voltage = <1060000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <1>;
+			qcom,supply-post-off-sleep = <3>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <8>;
+			qcom,supply-post-off-sleep = <3>;
+		};
+	};
+
+	dsi_panel_pwr_supply_p3_b: dsi_panel_pwr_supply_p3_b {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+			qcom,supply-post-off-sleep = <0>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3300000>;
+			qcom,supply-max-voltage = <3300000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <8>;
+			qcom,supply-post-off-sleep = <3>;
+		};
+	};
+
+	dsi_panel_pwr_post_supply_p3_b: dsi_panel_pwr_post_supply_p3_b {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1060000>;
+			qcom,supply-max-voltage = <1060000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-pre-on-sleep = <3>;
+			qcom,supply-post-on-sleep = <7>;
+			qcom,supply-post-off-sleep = <3>;
+		};
+	};
+};
+
+&L14B {
+	regulator-min-microvolt = <3000000>;
+	regulator-max-microvolt = <3300000>;
+	qcom,init-voltage = <3300000>;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_p3_42_02_0a_p10_dsc_vhm>;
+	vddd-supply = <&display_panel_vddd_p3>;
+	vddio-supply = <&L12B>;
+	vci-supply = <&L14B>;
+
+	/delete-property/ tvdd-supply;
+};
+
+&sde_dsi1 {
+	status = "disabled";
+};
+
+&sde_dp {
+	qcom,max-lclk-frequency-khz = <540000>;
+	status = "ok";
+};
+
+&mdss_mdp {
+	connectors = <&sde_dsi &smmu_sde_unsec &smmu_sde_sec &sde_wb0 &sde_wb1 &sde_dp>;
+};
+
+&qupv3_se19_spi {
+	synaptics_tcm@0 {
+		panel = <&dsi_p3_42_02_0a_p10_dsc_vhm
+			&dsi_p3_42_02_0a_p11_dsc_vhm
+			&dsi_p3_42_02_0a_p12_dsc_vhm
+			&dsi_p3_42_02_0a_p12_2_dsc_vhm
+			&dsi_p3_42_02_0a_p20_dsc_vhm
+			&dsi_p3_42_02_0a_p21_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm_pmic_b
+			&dsi_nt37801_amoled_video>;
+	};
+};
+
+&soc {
+	charge_screen: charge-screen {
+		panel = <&dsi_p3_42_02_0a_p10_dsc_vhm
+			&dsi_p3_42_02_0a_p11_dsc_vhm
+			&dsi_p3_42_02_0a_p12_dsc_vhm
+			&dsi_p3_42_02_0a_p12_2_dsc_vhm
+			&dsi_p3_42_02_0a_p20_dsc_vhm
+			&dsi_p3_42_02_0a_p21_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm_pmic_b
+			&dsi_nt37801_amoled_video>;
+	};
+	thermal_screen: thermal-screen {
+		panel = <&dsi_p3_42_02_0a_p10_dsc_vhm
+			&dsi_p3_42_02_0a_p11_dsc_vhm
+			&dsi_p3_42_02_0a_p12_dsc_vhm
+			&dsi_p3_42_02_0a_p12_2_dsc_vhm
+			&dsi_p3_42_02_0a_p20_dsc_vhm
+			&dsi_p3_42_02_0a_p21_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm_pmic_b
+			&dsi_nt37801_amoled_video>;
+	};
+	fingerprint_screen: fingerprint-screen {
+		panel = <&dsi_p3_42_02_0a_p10_dsc_vhm
+			&dsi_p3_42_02_0a_p11_dsc_vhm
+			&dsi_p3_42_02_0a_p12_dsc_vhm
+			&dsi_p3_42_02_0a_p12_2_dsc_vhm
+			&dsi_p3_42_02_0a_p20_dsc_vhm
+			&dsi_p3_42_02_0a_p21_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm
+			&dsi_p3_42_02_0a_mp_dsc_vhm_pmic_b
+			&dsi_nt37801_amoled_video>;
+	};
+};
