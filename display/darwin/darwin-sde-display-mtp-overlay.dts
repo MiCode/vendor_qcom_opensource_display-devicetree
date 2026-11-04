@@ -1,0 +1,11 @@
+/dts-v1/;
+/plugin/;
+#include "darwin-sde-display.dtsi"
+/ {
+	model = "Qualcomm Technologies, Inc. Darwin based on SM7750";
+	compatible = "qcom,kera-mtp", "qcom,kera", "qcom,kerap-mtp", "qcom,kerap",
+			"qcom,mtp";
+	qcom,msm-id = <686 0x10000>, <659 0x10000>;
+	qcom,board-id = <0x10008 0>;
+	xiaomi,miboard-id = <0xD 0>;
+};

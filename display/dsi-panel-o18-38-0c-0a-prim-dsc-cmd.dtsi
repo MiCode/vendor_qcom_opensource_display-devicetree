@@ -1,0 +1,1088 @@
+&mdss_mdp {
+	dsi_o18_38_0c_0a_prim_dsc_cmd: qcom,mdss_dsi_o18_38_0c_0a_prim_dsc_cmd {
+		qcom,mdss-dsi-panel-name = "xiaomi o18 38 0c 0a prim cmd mode dsc dsi panel";
+		qcom,mdss-dsi-panel-type = "dsi_cmd_mode";
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-bpp = <30>;
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-reset-sequence = <0 1>, <1 5>;
+		qcom,mdss-pan-physical-width-dimension = <1512>;
+		qcom,mdss-pan-physical-height-dimension = <1352>;
+		qcom,mdss-dsi-te-pin-select = <1>;
+		qcom,mdss-dsi-wr-mem-start = <0x2c>;
+		qcom,mdss-dsi-wr-mem-continue = <0x3c>;
+		qcom,mdss-dsi-te-dcs-command = <1>;
+		qcom,mdss-dsi-te-check-enable;
+		qcom,mdss-dsi-te-using-te-pin;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-lp11-init;
+
+		qcom,mdss-dsi-bl-inverted-dbv;
+		qcom,bl-update-flag = "delay_until_first_frame";
+
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <14500 15500 32000
+			17000 15500 30000 8000 3000>;
+		qcom,mdss-dsi-panel-peak-brightness = <18000000>;
+		qcom,mdss-dsi-panel-blackness-level = <3230>;
+
+		qcom,mdss-dsi-dma-schedule-line = <1>;
+		qcom,mdss-dsi-dma-schedule-window = <50>;
+
+		//qcom,spr-pack-type = "pentile";
+
+		mi,panel-id = <0x004F3138 0x50380C0A>;
+
+		//mi,ddic-round-corner-enabled;
+		qcom,mdss-disable-cesta-hw-sleep;
+
+		mi,flatmode-default-on-enabled;
+		mi,flatmode-status-check-enabled;
+		mi,mdss-dsi-panel-flatmode-status-offset-command = [
+			39 00 00 00 00 00 03 F0 5A 5A
+			39 00 00 00 00 00 04 B0 00 AF 93
+		];
+		mi,mdss-dsi-panel-flatmode-status-offset-command-state = "dsi_hs_mode";
+		mi,mdss-dsi-panel-flatmode-status-command = [
+			06 01 00 01 00 00 01 93
+		];
+		mi,mdss-dsi-panel-flatmode-status-command-state = "dsi_hs_mode";
+		mi,mdss-dsi-panel-flatmode-status-offset-end-command = [
+			39 00 00 00 00 00 03 F0 A5 A5
+		];
+		mi,mdss-dsi-panel-flatmode-status-offset-end-command-state = "dsi_hs_mode";
+
+		mi,mdss-dsi-panel-flatmode-status-read-length = <1>;
+		mi,mdss-dsi-panel-flatmode-on-status-value = <0x2B>;
+
+		mi,mdss-dsi-panel-wp-read-pre-tx-command = [
+			39 00 00 00 00 00 03 F0 5A 5A
+		];
+		mi,mdss-dsi-panel-wp-read-pre-tx-command-state = "dsi_hs_mode";
+		mi,mdss-dsi-panel-wp-read-command = [06 01 00 01 00 00 01 D8];
+		mi,mdss-dsi-panel-wp-read-command-state = "dsi_hs_mode";
+		mi,mdss-dsi-panel-wp-read-length = <15>;
+		mi,mdss-dsi-panel-wp-read-index = <9>;
+
+		/* IRQF_ONESHOT | IRQF_TRIGGER_HIGH */
+		/* mi,esd-err-irq-gpio = <&tlmm 97 0x2004>; */
+		/* esd-check reg_read */
+		qcom,esd-check-enabled;
+		qcom,mdss-dsi-panel-status-check-mode = "reg_read";
+		mi,mdss-dsi-panel-status-offset-command = [39 00 00 00 00 00 03 F0 5A 5A];
+		qcom,mdss-dsi-panel-status-command = [06 01 00 00 00 00 01 EE];
+		mi,mdss-dsi-panel-status-after-command = [39 00 00 00 00 00 03 F0 A5 A5];
+		qcom,mdss-dsi-panel-status-command-state = "dsi_lp_mode";
+		mi,mdss-dsi-panel-status-offset-command-state = "dsi_lp_mode";
+		mi,mdss-dsi-panel-status-after-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-panel-status-value = <0x00 0x00>;
+		qcom,mdss-dsi-panel-status-read-length = <2>;
+
+		mi,panel-on-dimming-delay = <120>;
+		mi,max-brightness-clone = <16383>;
+
+		mi,mdss-dsi-fac-bl-max-level = <2866>;
+		mi,mdss-fac-brightness-max-level = <2866>;
+		mi,doze-hbm-dbv-level = <245>;
+		mi,doze-lbm-dbv-level = <20>;
+
+		qcom,mdss-dsi-display-timings {
+			timing@normal_120hz_index_00 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <0>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					/* HOP Manual Mode - 120hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 00
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 04 B0 00 24 BD
+					39 00 00 40 00 00 05 BD 00 02 00 04
+					39 00 00 40 00 00 04 B0 00 2C BD
+					39 00 00 40 00 00 03 BD 00 07
+					39 00 00 40 00 00 02 60 00
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+			timing@normal_60hz_index_01 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <1>;
+				qcom,mdss-dsi-panel-framerate = <60>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					/* HOP Manual Mode - 60hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 01
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 04 B0 00 24 BD
+					39 00 00 40 00 00 05 BD 00 02 00 04
+					39 00 00 40 00 00 04 B0 00 2C BD
+					39 00 00 40 00 00 03 BD 00 07
+					39 00 00 40 00 00 02 60 01
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+
+			timing@normal_90hz_index_02 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <2>;
+				qcom,mdss-dsi-panel-framerate = <90>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 10
+					39 00 00 00 11 00 02 F7 0F
+					39 00 00 40 00 00 02 BD E3
+					39 00 00 40 00 00 04 B0 00 13 BD
+					39 00 00 40 00 00 03 BD 00 59
+					39 00 00 40 00 00 04 B0 00 9E BD
+					39 00 00 40 00 00 09 BD 00 00 00 01 00 03 00 0B
+					39 00 00 40 00 00 04 B0 00 AE BD
+					39 00 00 40 00 00 04 BD 00 00 02
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+
+			timing@normal_40hz_index_03 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <3>;
+				qcom,mdss-dsi-panel-framerate = <40>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					/* HOP Manual Mode - 40hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 02
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 02
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 04 B0 00 24 BD
+					39 00 00 40 00 00 05 BD 00 02 00 04
+					39 00 00 40 00 00 04 B0 00 2C BD
+					39 00 00 40 00 00 03 BD 00 07
+					39 00 00 40 00 00 02 60 03
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+			timing@normal_30hz_index_04 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <4>;
+				qcom,mdss-dsi-panel-framerate = <30>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					/* HOP Manual Mode - 30hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 03
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 02
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 04 B0 00 24 BD
+					39 00 00 40 00 00 05 BD 00 02 00 04
+					39 00 00 40 00 00 04 B0 00 2C BD
+					39 00 00 40 00 00 03 BD 00 07
+					39 00 00 40 00 00 02 60 02
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+			timing@normal_24hz_index_05 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <5>;
+				qcom,mdss-dsi-panel-framerate = <24>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					/* HOP Manual Mode - 24hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 04
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 00
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 04 B0 00 24 BD
+					39 00 00 40 00 00 05 BD 00 02 00 04
+					39 00 00 40 00 00 04 B0 00 2C BD
+					39 00 00 40 00 00 03 BD 00 07
+					39 00 00 40 00 00 02 60 04
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+
+			timing@normal_15hz_index_06 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <6>;
+				qcom,mdss-dsi-panel-framerate = <15>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+				/* DSC-PPS Setting */
+				39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+				39 00 00 00 00 00 02 9D 01
+				05 00 00 00 78 00 01 11
+				/* 2D-SPR Setting */
+				39 00 00 40 00 00 03 F0 5A 5A
+				39 00 00 40 00 00 04 B0 00 A8 92
+				39 00 00 40 00 00 02 92 40
+				39 00 00 40 00 00 04 B0 00 A6 92
+				39 00 00 00 00 00 03 92 C5 F5
+				39 00 00 00 00 00 03 F0 A5 A5
+				39 00 00 40 00 00 03 F0 5A 5A
+				39 00 00 40 00 00 04 B0 00 3D F2
+				39 00 00 40 00 00 02 F2 F0
+				39 00 00 00 00 00 02 F7 0F
+				39 00 00 00 00 00 03 F0 A5 A5
+				/* ERR_FG Setting */
+				39 00 00 40 00 00 03 F0 5A 5A
+				39 00 00 40 00 00 02 E5 15
+				39 00 00 40 00 00 04 B0 00 02 ED
+				39 00 00 40 00 00 02 ED 60
+				39 00 00 40 00 00 04 B0 00 59 F4
+				39 00 00 40 00 00 02 F4 10
+				39 00 00 00 00 00 03 ED 00 51
+				39 00 00 00 00 00 03 F0 A5 A5
+				/* Partial Update */
+				39 00 00 40 00 00 03 F0 5A 5A
+				39 00 00 40 00 00 05 2B 00 00 08 AF
+				39 00 00 00 00 00 03 F0 A5 A5
+				/* TE On */
+				39 00 00 40 00 00 02 35 00
+				/* Brightness Control */
+				39 00 00 40 00 00 03 F0 5A 5A
+				39 00 00 40 00 00 02 53 20
+				39 00 00 40 00 00 03 51 00 08
+				39 00 00 40 00 00 04 B0 00 10 64
+				39 00 00 40 00 00 02 64 01
+				39 00 00 00 00 00 02 F7 0F
+				39 00 00 00 00 00 03 F0 A5 A5
+				39 00 00 40 00 00 03 F0 5A 5A
+				39 00 00 40 00 00 04 B0 02 0F 65
+				39 00 00 40 00 00 02 65 00
+				39 00 00 00 00 00 02 F7 0F
+				39 00 00 00 00 00 03 F0 A5 A5
+				/* VGH/VGL err flag detect */
+				39 00 00 40 00 00 03 F0 5A 5A
+				39 00 00 40 00 00 02 E5 15
+				39 00 00 40 00 00 04 ED 02 41 60
+				39 00 00 40 00 00 04 B0 00 59 F4
+				39 00 00 40 00 00 02 F4 F0
+				39 00 00 40 00 00 04 B0 00 5F F4
+				39 00 00 00 00 00 02 F4 AA
+				39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					/* HOP Manual Mode - 15hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 07
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 02
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 04 B0 00 24 BD
+					39 00 00 40 00 00 05 BD 00 02 00 04
+					39 00 00 40 00 00 04 B0 00 2C BD
+					39 00 00 40 00 00 03 BD 00 07
+					39 00 00 40 00 00 02 60 07
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+
+			timing@idle_120_to_10hz_index_07 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <7>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				/* ---------------------------- */
+				/* | 15 - 14 | 13 - 7 | 6 - 0 | */
+				/* ---------------------------- */
+				/* |   mode  | sf fps | min fps| */
+				/* ---------------------------- -*/
+				/* mode: 1 idle, 2 auto, 3 qsync */
+				/*   1 << 14 | 120 << 7 | 10     */
+				qcom,mdss-dsi-h-sync-skew = <31754>;
+				/* mode: 0 normal, 1 idle, 2 auto, 3 qsync, 4 diff, 5 test */
+				mi,mdss-dsi-ddic-mode = "idle";
+				mi,mdss-dsi-sf-framerate = <120>;
+				mi,mdss-dsi-ddic-min-framerate = <10>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* HOP Manual Mode - 120hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					//fix TE on : 51    off : 11
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					//fix TE setting, 120hz:00  60hz:01  40hz:02  30hz:03  24hz:04
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 08 D0 00 4F 08 D0 00 4F
+					//auto mode:E3    manual mode :E1
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 04 B0 00 44 BD
+					39 00 00 40 00 00 05 BD 00 24 00 48
+					39 00 00 40 00 00 02 60 10
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 00
+					39 00 00 00 11 00 02 F7 0F
+					39 00 00 40 00 00 02 BD E3
+					39 00 00 40 00 00 04 B0 00 13 BD
+					39 00 00 40 00 00 03 BD 00 0B
+					39 00 00 40 00 00 04 B0 00 9E BD
+					39 00 00 40 00 00 09 BD 00 00 00 01 00 03 00 0B
+					39 00 00 40 00 00 04 B0 00 AE BD
+					39 00 00 40 00 00 04 BD 00 00 02
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+			timing@idle_120_to_1hz_index_08 {
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <8>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				/* ---------------------------- */
+				/* | 15 - 14 | 13 - 7 | 6 - 0 | */
+				/* ---------------------------- */
+				/* |   mode  | sf fps | min fps| */
+				/* ---------------------------- -*/
+				/* mode: 1 idle, 2 auto, 3 qsync */
+				/*   1 << 14 | 120 << 7 | 1     */
+				qcom,mdss-dsi-h-sync-skew = <31745>;
+				/* mode: 0 normal, 1 idle, 2 auto, 3 qsync, 4 diff, 5 test */
+				mi,mdss-dsi-ddic-mode = "idle";
+				mi,mdss-dsi-sf-framerate = <120>;
+				mi,mdss-dsi-ddic-min-framerate = <1>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* HOP Manual Mode - 120hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					//fix TE on : 51    off : 11
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					//fix TE setting, 120hz:00  60hz:01  40hz:02  30hz:03  24hz:04
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 08 D0 00 4F 08 D0 00 4F
+					//auto mode:E3    manual mode :E1
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 04 B0 00 44 BD
+					39 00 00 40 00 00 05 BD 00 24 00 48
+					39 00 00 40 00 00 02 60 10
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 00
+					39 00 00 00 11 00 02 F7 0F
+					39 00 00 40 00 00 02 BD E3
+					39 00 00 40 00 00 04 B0 00 13 BD
+					39 00 00 40 00 00 03 BD 00 77
+					39 00 00 40 00 00 04 B0 00 9E BD
+					39 00 00 40 00 00 09 BD 00 00 00 01 00 03 00 0B
+					39 00 00 40 00 00 04 B0 00 AE BD
+					39 00 00 40 00 00 04 BD 00 00 02
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+			timing@auto_120_to_10hz_index_9{
+				#include "dsi-panel-o18-38-0c-0a-prim-dsc-cmd-common.dtsi"
+				cell-index = <9>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				/* ---------------------------- */
+				/* | 15 - 14 | 13 - 7 | 6 - 0 | */
+				/* ---------------------------- */
+				/* |   mode  | sf fps | min fps| */
+				/* ---------------------------- -*/
+				/* mode: 1 idle, 2 auto, 3 qsync */
+				/*   2 << 14 | 120 << 7 | 10     */
+				qcom,mdss-dsi-h-sync-skew = <48138>;
+				/* mode: 0 normal, 1 idle, 2 auto, 3 qsync, 4 diff, 5 test */
+				mi,mdss-dsi-ddic-mode = "auto";
+				mi,mdss-dsi-sf-framerate = <120>;
+				mi,mdss-dsi-ddic-min-framerate = <10>;
+
+				qcom,mdss-dsi-on-command = [
+					/* Below comman command total counts are 46 */
+					/* DSC-PPS Setting */
+					39 00 00 40 00 00 81 9E 12 00 00 AB 30 80 08 B0 09 B8 00 8B 04 DC 04 DC 02 00 04 0B 00 20 0E 44 00 11 00 0F 00 DF 00 52 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 02 9D 01
+					05 00 00 00 78 00 01 11
+					/* 2D-SPR Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 A8 92
+					39 00 00 40 00 00 02 92 40
+					39 00 00 40 00 00 04 B0 00 A6 92
+					39 00 00 00 00 00 03 92 C5 F5
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 00 3D F2
+					39 00 00 40 00 00 02 F2 F0
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* ERR_FG Setting */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 B0 00 02 ED
+					39 00 00 40 00 00 02 ED 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 10
+					39 00 00 00 00 00 03 ED 00 51
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* Partial Update */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 05 2B 00 00 08 AF
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* TE On */
+					39 00 00 40 00 00 02 35 00
+					/* Brightness Control */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 08
+					39 00 00 40 00 00 04 B0 00 10 64
+					39 00 00 40 00 00 02 64 01
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 04 B0 02 0F 65
+					39 00 00 40 00 00 02 65 00
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* VGH/VGL err flag detect */
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 E5 15
+					39 00 00 40 00 00 04 ED 02 41 60
+					39 00 00 40 00 00 04 B0 00 59 F4
+					39 00 00 40 00 00 02 F4 F0
+					39 00 00 40 00 00 04 B0 00 5F F4
+					39 00 00 00 00 00 02 F4 AA
+					39 00 00 00 00 00 03 F0 A5 A5
+					/* HOP Manual Mode - 120hz */
+					39 00 00 40 00 00 03 F0 5A 5A
+					//fix TE on : 51    off : 11
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					//fix TE setting, 120hz:00  60hz:01  40hz:02  30hz:03  24hz:04
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 08 D0 00 4F 08 D0 00 4F
+					//auto mode:E3    manual mode :E1
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 04 B0 00 44 BD
+					39 00 00 40 00 00 05 BD 00 24 00 48
+					39 00 00 40 00 00 02 60 10
+					39 00 00 00 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+					05 00 00 00 00 00 01 29
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-timing-switch-command = [
+					39 00 00 40 00 00 03 F0 5A 5A
+					39 00 00 40 00 00 02 B9 51
+					39 00 00 40 00 00 04 B0 00 02 B9
+					39 00 00 40 00 00 02 B9 00
+					39 00 00 40 00 00 04 B0 00 08 B9
+					39 00 00 40 00 00 09 B9 00 00 00 4F 00 00 00 4F
+					39 00 00 40 00 00 02 F2 01
+					39 00 00 40 00 00 02 BD E1
+					39 00 00 40 00 00 02 60 00
+					39 00 00 00 11 00 02 F7 0F
+					39 00 00 40 00 00 02 BD E3
+					39 00 00 40 00 00 04 B0 00 13 BD
+					39 00 00 40 00 00 03 BD 00 0B
+					39 00 00 40 00 00 04 B0 00 9E BD
+					39 00 00 40 00 00 09 BD 00 00 00 01 00 03 00 0B
+					39 00 00 40 00 00 04 B0 00 AE BD
+					39 00 00 40 00 00 04 BD 00 00 02
+					39 00 00 40 00 00 02 F7 0F
+					39 00 00 00 00 00 03 F0 A5 A5
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_lp_mode";
+			};
+		};
+	};
+};
+
+&dsi_o18_38_0c_0a_prim_dsc_cmd {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_prim_O18>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <25>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,bl-dsc-cmd-state = "dsi_hs_mode";
+	qcom,mdss-brightness-max-level = <4095>;
+	qcom,mdss-brightness-init-level = <307>;
+	qcom,platform-reset-gpio = <&tlmm 98 0>;
+
+	mi,disable-ic-dimming-flag;
+	qcom,mdss-dsi-panel-vsync-delay;
+	qcom,ulps-enabled;
+	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+	qcom,mdss-dsi-clk-strength = <0xFF>;
+	qcom,mdss-dsi-deemph-eq-strength = <0xCC>;
+};

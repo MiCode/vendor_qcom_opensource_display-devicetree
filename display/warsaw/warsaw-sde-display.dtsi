@@ -1,0 +1,257 @@
+#include "../sun-sde-display.dtsi"
+#include "dsi-panel-p12x-42-02-0a-dsc-cmd.dtsi"
+#include "../dsi-panel-nt37801-dsc-wqhd-plus-video.dtsi"
+
+&soc {
+    display_panel_vddd: display_panel_vddd {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vddd";
+		regulator-min-microvolt = <1100000>;
+		regulator-max-microvolt = <1100000>;
+		gpio = <&tlmm 120 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	dsi_panel_pwr_supply_p12x: dsi_panel_pwr_supply_p12x {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1100000>;
+			qcom,supply-max-voltage = <1100000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <10>;
+			qcom,supply-pre-off-sleep = <2>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+	};
+};
+
+&L2G {
+		regulator-max-microvolt = <1800000>;
+		qcom,init-voltage = <1800000>;
+};
+
+&L13B {
+		regulator-max-microvolt = <3000000>;
+		qcom,init-voltage = <3000000>;
+};
+
+&dsi_nt37801_amoled_video {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_p12x>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <10>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <2047>;
+	qcom,mdss-dsi-bl-inverted-dbv;
+	qcom,platform-reset-gpio = <&tlmm 98 0>;
+};
+
+&mdss_dsi_phy0 {
+    qcom,dsi-pll-ssc-disable;
+};
+&mdss_dsi_phy1 {
+    qcom,dsi-pll-ssc-disable;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_nt37801_amoled_video>;
+	vddd-supply = <&display_panel_vddd>;
+	vddio-supply = <&L2G>;
+	vci-supply = <&L13B>;
+	pinctrl-names = "panel_active", "panel_suspend";
+	pinctrl-0 = <&sde_dsi_active &sde_te_active>;
+	pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
+};
+
+&qupv3_se2_spi {
+		goodix@0 {
+			panel  = <&dsi_p12x_42_02_0a_dsc_cmd
+				&dsi_nt37801_amoled_video>;
+        };
+};
+
+&sde_dsi1 {
+	status = "disabled";
+};
+
+&mdss_mdp {
+	connectors = <&sde_dsi &smmu_sde_unsec &smmu_sde_sec &sde_wb1 &sde_wb2 &sde_cesta>;
+};
+
+&sde_dp {
+	status = "disabled";
+};
+
+/* NVT device tree node and ASIC Start */
+&aliases {
+	hsuart1 = &qupv3_se6_2uart;
+};
+
+&tlmm {
+	nvt_xtal_en_active: nvt_xtal_en_active {
+		mux {
+			pins = "gpio60";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio60";
+			drive-strength = <2>;  /* 2 mA */
+			bias-pull-down;
+			output-high;
+		};
+	};
+
+	nvt_xtal_en_sleep: nvt_xtal_en_sleep {
+		mux {
+			pins = "gpio60";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio60";
+			drive-strength = <2>;  /* 2 mA */
+			bias-pull-down;
+			output-low;
+		};
+	};
+
+	qupv3_se6_2uart_pins: qupv3_se6_2uart_pins {
+		qupv3_se6_2uart_tx_active: qupv3_se6_2uart_tx_active {
+			mux {
+				pins = "gpio58";
+				function = "qup1_se6_l2";
+			};
+
+			config {
+				pins = "gpio58";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se6_2uart_rx_active: qupv3_se6_2uart_rx_active {
+			mux {
+				pins = "gpio59";
+				function = "qup1_se6_l3";
+			};
+
+			config {
+				pins = "gpio59";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se6_2uart_sleep: qupv3_se6_2uart_sleep {
+			mux {
+				pins = "gpio58", "gpio59";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio58", "gpio59";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+};
+
+&qupv3_1 {
+	qupv3_se6_2uart: qcom,qup_uart@a98000 {
+		compatible = "qcom,msm-geni-serial-hs";
+		reg = <0xa98000 0x4000>;
+		reg-names = "se_phys";
+		interrupts-extended = <&intc GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>,
+				<&tlmm 59 IRQ_TYPE_LEVEL_HIGH>;
+		clock-names = "se-clk";
+		clocks = <&gcc GCC_QUPV3_WRAP1_S6_CLK>;
+		interconnect-names = "qup-core", "qup-config", "qup-memory";
+		interconnects =
+		<&clk_virt MASTER_QUP_CORE_1 &clk_virt SLAVE_QUP_CORE_1>,
+		<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_1>,
+		<&aggre1_noc MASTER_QUP_1 &mc_virt  SLAVE_EBI1>;
+		pinctrl-names = "default", "active", "sleep", "shutdown";
+		pinctrl-0 = <&qupv3_se6_2uart_tx_active>, <&qupv3_se6_2uart_rx_active>;
+		pinctrl-1 = <&qupv3_se6_2uart_tx_active>, <&qupv3_se6_2uart_rx_active>;
+		pinctrl-2 = <&qupv3_se6_2uart_sleep>;
+		pinctrl-3 = <&qupv3_se6_2uart_sleep>;
+		qcom,auto-suspend-disable;
+		status = "disabled";
+	};
+};
+
+
+&qupv3_se10_spi {
+	status = "ok";
+
+	nvt {
+		compatible = "novatek,vis-display";
+		reg = <0x0>;
+		status = "ok";
+		spi-max-frequency = <24000000>;
+		nvt,always08 = <&tlmm 2 0>;
+		nvt,always18 = <&tlmm 14 0>;
+		nvt,vsel = <&tlmm 95 0>;
+		nvt,resetN = <&tlmm 83 0>;
+		nvt,ready = <&tlmm 15 0>;
+		nvt,abnormal = <&tlmm 69 0>;
+		nvt,xtalEN = <&tlmm 60 0>;
+		clocks = <&rpmhcc RPMH_DIV_CLK1>;
+		clock-names = "mclk";
+		pinctrl-names = "default","sleep";
+		pinctrl-0 = <&nvt_xtal_en_active>;
+		pinctrl-1 = <&nvt_xtal_en_sleep>;
+	};
+};
+/* NVT device tree node and ASIC End */
+
+&soc {
+	charge_screen: charge-screen {
+		panel  = <&dsi_p12x_42_02_0a_dsc_cmd
+			&dsi_nt37801_amoled_video>;
+	};
+};
+
+&soc {
+	thermal_screen: thermal-screen {
+		panel = <&dsi_p12x_42_02_0a_dsc_cmd
+			&dsi_nt37801_amoled_video>;
+	};
+	fingerprint_screen: fingerprint-screen {
+		panel = <&dsi_p12x_42_02_0a_dsc_cmd
+			&dsi_nt37801_amoled_video>;
+	};
+};
+
+&qupv3_se10_i2c_scl_active {
+	config {
+		pins = "gpio9";
+		drive-strength = <4>;
+		bias-pull-up;
+		qcom,i2c_pull;
+	};
+};
