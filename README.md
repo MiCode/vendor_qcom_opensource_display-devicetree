@@ -10,3 +10,4 @@
 | piano-w-oss | Xiaomi Pad 8 Pro | Android W | LA.VENDOR.15.4.0.r1-15000-r1.0.r1_00044.1 |[piano-w-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/piano-w-oss) |
 | sunstone-u-oss | Redmi Note 12 5G / Redmi Note 12 5G / Redmi Note 12R | Android U | Snapdragon_Mid_2021.SPF.2.0 r2.0.c3_00004.3.145544.1 |[sunstone-u-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/sunstone-u-oss) |
 | warsaw-w-oss | REDMI K90 Ultra | Android W | LA.VENDOR.15.4.0.r1-15000-r1.0.r1_00044.1 |[warsaw-w-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/warsaw-w-oss) |
+| darwin-w-oss | POCO X8s | Android W | LA.VENDOR.15.4.0.r1-15000-pakala.0-1.111359.20 |[darwin-w-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/darwin-w-oss) |
