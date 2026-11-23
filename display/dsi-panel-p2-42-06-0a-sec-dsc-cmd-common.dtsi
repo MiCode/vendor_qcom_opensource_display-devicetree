@@ -1,0 +1,80 @@
+mi,mdss-dsi-FE-command = [
+    15 00 00 00 00 00 02 FE 00
+];
+mi,mdss-dsi-FE-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-dimmingon-command = [
+	// dimming 8 frame
+	15 00 00 40 00 00 02 FE 00
+	15 00 00 40 00 00 02 53 28
+	15 00 00 40 00 00 02 FE 70
+	15 00 00 40 00 00 02 0C 00
+	15 00 00 40 00 00 02 0D 11
+	15 00 00 00 00 00 02 0E 03
+];
+mi,mdss-dsi-dimmingon-command-state = "dsi_hs_mode";
+mi,mdss-dsi-dimmingoff-command = [
+	15 00 00 40 00 00 02 FE 00
+	15 00 00 00 00 00 02 53 20
+];
+mi,mdss-dsi-dimmingoff-command-state = "dsi_hs_mode";
+
+qcom,mdss-dsi-off-command = [
+	05 00 00 00 1E 00 01 28
+	05 00 00 00 78 00 01 10
+];
+qcom,mdss-dsi-off-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-hbm-on-command = [
+	39 00 00 00 00 00 03 51 0D 2F
+];
+mi,mdss-dsi-hbm-on-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-hbm-off-command = [
+	39 00 00 00 00 00 03 51 07 FF
+];
+/* <mipi_address  update_index  update_length> */
+mi,mdss-dsi-hbm-off-command-update = <0x51 0 2>;
+mi,mdss-dsi-hbm-off-command-state = "dsi_hs_mode";
+
+mi,mdss-dsi-round-corner-on-command = [
+];
+mi,mdss-dsi-round-corner-on-command-state = "dsi_lp_mode";
+
+mi,mdss-dsi-round-corner-off-command = [
+];
+mi,mdss-dsi-round-corner-off-command-state = "dsi_lp_mode";
+
+/*timming common*/
+qcom,mdss-dsi-panel-width = <596>;
+qcom,mdss-dsi-panel-height = <976>;
+qcom,mdss-dsi-h-front-porch = <64>;
+qcom,mdss-dsi-h-back-porch = <32>;
+qcom,mdss-dsi-h-pulse-width = <32>;
+qcom,mdss-dsi-v-back-porch = <32>;
+qcom,mdss-dsi-v-front-porch = <32>;
+qcom,mdss-dsi-v-pulse-width = <32>;
+qcom,mdss-dsi-h-sync-pulse = <0>;
+qcom,mdss-dsi-h-left-border = <0>;
+qcom,mdss-dsi-h-right-border = <0>;
+qcom,mdss-dsi-v-top-border = <0>;
+qcom,mdss-dsi-v-bottom-border = <0>;
+qcom,mdss-dsi-panel-clockrate = <553000000>;
+qcom,mdss-dsi-panel-jitter = <0x5 0x1>;
+qcom,mdss-mdp-transfer-time-us = <7300>;
+
+qcom,mdss-dsi-panel-phy-timings = [00 14 05 05 13 13 05 05 06 02 04 00 12 0A];
+qcom,display-topology = <1 1 1>;
+qcom,default-topology-index = <0>;
+
+/*dsc common*/
+qcom,compression-mode = "dsc";
+qcom,mdss-dsc-version = <0x12>;
+qcom,mdss-dsc-scr-version = <0x0>;
+qcom,mdss-dsc-slice-height = <16>;
+qcom,mdss-dsc-slice-width = <596>;
+qcom,mdss-dsc-slice-per-pkt = <1>;
+qcom,mdss-dsc-bit-per-component = <10>;
+qcom,mdss-dsc-bit-per-pixel = <8>;
+qcom,mdss-dsc-block-prediction-enable;
+

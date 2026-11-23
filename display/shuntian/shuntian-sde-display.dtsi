@@ -1,0 +1,162 @@
+#include "../alor-sde-display.dtsi"
+#include "dsi-panel-shuntian-35-02-0a-dsc-vid.dtsi"
+
+&soc {
+    display_panel_vddi: display_gpio_regulator_vddi {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vddi";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-enable-ramp-delay = <233>;
+		gpio = <&tlmm 82 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+	display_panel_vsp: display_gpio_regulator_vsp {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vsp";
+		regulator-min-microvolt = <6300000>;
+		regulator-max-microvolt = <6300000>;
+		regulator-enable-ramp-delay = <233>;
+		gpio = <&tlmm 189 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+	display_panel_vsn: display_gpio_regulator_vsn {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vsn";
+		regulator-min-microvolt = <6300000>;
+		regulator-max-microvolt = <6300000>;
+		regulator-enable-ramp-delay = <233>;
+		gpio = <&tlmm 182 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+	dsi_panel_pwr_supply_shuntian: dsi_panel_pwr_supply_shuntian {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddi";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vsp";
+			qcom,supply-min-voltage = <6300000>;
+			qcom,supply-max-voltage = <6300000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <4>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vsn";
+			qcom,supply-min-voltage = <6300000>;
+			qcom,supply-max-voltage = <6300000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+	};
+};
+&dsi_nt37801_amoled_fhd_plus_cmd {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_shuntian>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <10>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <2047>;
+	qcom,mdss-dsi-bl-inverted-dbv;
+	qcom,platform-reset-gpio = <&tlmm 146 0>;
+	qcom,mdss-dsi-te-using-wd;
+};
+&dsi_shuntian_35_02_0a_dsc_vid {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_shuntian>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_external";
+	qcom,mdss-dsi-bl-min-level = <4>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,mdss-brightness-max-level = <4095>;
+	qcom,mdss-brightness-init-level = <307>;
+	//qcom,mdss-dsi-bl-inverted-dbv;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_nt37801_amoled_fhd_plus_cmd>;
+	vddi-supply = <&display_panel_vddi>;
+	vsp-supply = <&display_panel_vsp>;
+	vsn-supply = <&display_panel_vsn>;
+	pinctrl-names = "panel_active", "panel_suspend";
+	pinctrl-0 = <&sde_dsi_active &sde_te_active>;
+	pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
+};
+&sde_dsi1 {
+	status = "disabled";
+};
+&wcd_usbss {
+	status = "ok";
+};
+&sde_dp {
+	qcom,dp-aux-switch = <&wcd_usbss>;
+	qcom,max-lclk-frequency-khz = <540000>;
+	status = "ok";
+};
+&mdss_mdp {
+	connectors = <&sde_dsi &smmu_sde_unsec &smmu_sde_sec &sde_wb0 &sde_wb1 &sde_dp>;
+};
+
+/* close ssc */
+&mdss_dsi_phy0 {
+    qcom,dsi-pll-ssc-disable;
+};
+&mdss_dsi_phy1 {
+    qcom,dsi-pll-ssc-disable;
+};
+
+&qupv3_se20_i2c {
+	status = "ok";
+	ktz8866@11 {
+		compatible = "ktz,ktz8866";
+		status = "ok";
+		reg = <0x11>;
+		//ktz8866,hwen-gpio = <&tlmm 128 0x00>;
+		//ktz8866,enp-gpio = <&tlmm 30 0x00>;
+		//ktz8866,enn-gpio = <&tlmm 31 0x00>;
+		//ktz8866,panelid-gpio = <&tlmm 10 0x00>;
+		//ktz8866,backlight-HBM-enable;
+	};
+};
+&qupv3_se18_i2c {
+	status = "ok";
+	ktz8866@11 {
+		compatible = "ktz,ktz8866";
+		status = "ok";
+		reg = <0x11>;
+	};
+};
+&qupv3_se4_spi {
+	novatek@0 {
+		panel = <&dsi_shuntian_35_02_0a_dsc_vid
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+};
+&soc {
+	xiaomi_keyboard {
+		panel = <&dsi_shuntian_35_02_0a_dsc_vid
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+	charge_screen: charge-screen {
+		panel = <&dsi_shuntian_35_02_0a_dsc_vid
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+	thermal_screen: thermal-screen {
+		panel = <&dsi_shuntian_35_02_0a_dsc_vid
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+};
