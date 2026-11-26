@@ -12,3 +12,4 @@
 | warsaw-w-oss | REDMI K90 Ultra | Android W | LA.VENDOR.15.4.0.r1-15000-r1.0.r1_00044.1 |[warsaw-w-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/warsaw-w-oss) |
 | darwin-w-oss | POCO X8s | Android W | LA.VENDOR.15.4.0.r1-15000-pakala.0-1.111359.20 |[darwin-w-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/darwin-w-oss) |
 | songyuan-w-oss | POCO F9 Ultra / REDMI K100 Pro Max | Android W | LA.VENDOR.16.2.0.r1-15300-r1.0.r1_000033.0 |[songyuan-w-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/songyuan-w-oss) |
+| shuntian-w-oss | Xiaomi Pad 9 Pro | Android W | LA.VENDOR.16.2.0.r1-15300-r1.0.r1_000033.0 |[shuntian-w-oss](https://github.com/MiCode/vendor_qcom_opensource_display-devicetree/tree/shuntian-w-oss) |
