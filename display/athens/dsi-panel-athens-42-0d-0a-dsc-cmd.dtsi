@@ -1,0 +1,1115 @@
+&mdss_mdp {
+	dsi_athens_42_0d_0a_dsc_cmd: qcom,mdss_dsi_athens_42_0d_0a_dsc_cmd {
+		qcom,mdss-dsi-panel-name = "xiaomi athens 42 0d 0a cmd mode dsc dsi panel";
+		qcom,mdss-dsi-panel-type = "dsi_cmd_mode";
+		qcom,mdss-dsi-panel-physical-type = "oled";
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-bpp = <30>;
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+                qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-reset-sequence =<1 5>, <0 5>, <1 25>;
+		qcom,mdss-pan-physical-width-dimension = <700>;
+		qcom,mdss-pan-physical-height-dimension = <1521>;
+		qcom,mdss-dsi-te-pin-select = <1>;
+		qcom,mdss-dsi-wr-mem-start = <0x2c>;
+		qcom,mdss-dsi-wr-mem-continue = <0x3c>;
+		qcom,mdss-dsi-te-dcs-command = <1>;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-bl-inverted-dbv;
+		qcom,bl-update-flag = "delay_until_first_frame";
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <14500 15500 32000
+			17000 15500 30000 8000 3000>;
+		qcom,mdss-dsi-panel-peak-brightness = <32000000>;
+		qcom,mdss-dsi-panel-blackness-level = <3230>;
+		qcom,mdss-dsi-dma-schedule-line = <1>;
+		qcom,mdss-dsi-dma-schedule-window = <20>;
+		//mi,sf-set-doze-brightness;
+
+		qcom,mdss-disable-cesta-hw-sleep;
+
+		qcom,mdss-dsi-display-timings {
+			timing@wqhd_normal_60hz_index_00 {
+				#include "dsi-panel-athens-42-0d-0a-dsc-cmd-common.dtsi"
+				cell-index = <1>;
+				qcom,mdss-dsi-panel-framerate = <60>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//60hz
+					15 00 00 00 00 00 02 6C 01
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//60hz
+					39 00 00 40 00 00 02 6C 01
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-timing-switch-transition-144-fps-command = [
+					//from 165Hz/185Hz to 60Hz - add 144Hz
+					39 00 00 60 00 00 02 6C 02
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 03 00 03 F0 AA 00
+					//60hz
+					39 00 00 60 00 00 02 6C 01
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-transition-144-fps-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-on-command = [
+					/* init code */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					/* err flag */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 00 00 00 02 CF 02
+					/* reload gamma */
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 00 00 00 05 EA 0F 41 00 88
+					/* ON/OFF function */
+					39 00 00 40 00 00 03 F0 AA 11
+					39 00 00 40 00 00 02 C3 31
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 11
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 E0
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					/* OD and DMR by V clr */
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					/* soft vglr */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F4 20
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 02
+					39 00 00 00 00 00 02 FB 53
+					/* Save power consumption */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					/* upls lp11 mipi err */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					/* follow P2 black code */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0F
+					39 00 00 40 00 00 02 F9 53
+					/* normal setting */
+					39 00 00 40 00 00 02 03 01
+					39 00 00 40 00 00 02 35 00
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 02 6D 00
+					/* vesa setting */
+					39 00 00 40 00 00 5F 70 12 00 00 AB 30 80 09 CE 04 84 00 0A 02 42 02 42 02 00 02 22 00 20 00 D7 00 08 00 0C 0A AB 09 8D 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00
+					/* PMIC 1 */
+					39 00 00 40 00 00 02 72 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					/* Error flag optimization */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 87
+					/* dummy setting */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 B0 02
+					/* cover AOD problem */
+					39 00 00 40 00 00 03 F0 AA 12
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 D1 00
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 09
+					39 00 00 40 00 00 02 CF 5B
+					/* gating mipi error */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 03 CF DD 59
+					/* FOD_CRC_SKIP_FRAME */
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 C0 03
+					/* OTK */
+					39 00 00 40 00 00 03 F0 AA 14
+					39 00 00 40 00 00 02 C1 0B
+					39 00 00 40 00 00 20 C3 41 33 0C 03 1C 03 1C 03 1C 03 1A 03 1C 03 1C 03 1C 00 C7 00 C7 00 C7 00 C7 00 31 00 31 00 31
+					39 00 00 40 00 00 03 F0 AA 00
+					/* 60hz */
+					39 00 00 40 00 00 02 6C 01
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+			timing@wqhd_normal_120hz_index_01 {
+				#include "dsi-panel-athens-42-0d-0a-dsc-cmd-common.dtsi"
+				cell-index = <0>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//120hz
+					15 00 00 00 00 00 02 6C 00
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//120hz
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 03 B1 00 21
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 CB 0A 00
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 03 D2 09 67
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-timing-switch-transition-fps-command = [
+					//from 90Hz to 120Hz - add 60Hz
+					39 00 00 60 00 00 02 6C 01
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 05 00 03 F0 AA 00
+					//120hz
+					39 00 00 60 00 00 03 F0 AA 10
+					39 00 00 60 00 00 02 65 04
+					39 00 00 60 00 00 03 B1 00 21
+					39 00 00 60 00 00 03 F0 AA 13
+					39 00 00 60 00 00 03 CB 0A 00
+					39 00 00 60 00 00 03 F0 AA 16
+					39 00 00 60 00 00 02 65 13
+					39 00 00 60 00 00 03 D2 09 67
+					39 00 00 60 00 00 02 6C 00
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-transition-fps-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-timing-switch-transition-144-fps-command = [
+					//from 165Hz/185Hz to 120Hz - add 144Hz
+					39 00 00 60 00 00 02 6C 02
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 03 00 03 F0 AA 00
+					//120hz
+					39 00 00 60 00 00 03 F0 AA 10
+					39 00 00 60 00 00 02 65 04
+					39 00 00 60 00 00 03 B1 00 21
+					39 00 00 60 00 00 03 F0 AA 13
+					39 00 00 60 00 00 03 CB 0A 00
+					39 00 00 60 00 00 03 F0 AA 16
+					39 00 00 60 00 00 02 65 13
+					39 00 00 60 00 00 03 D2 09 67
+					39 00 00 60 00 00 02 6C 00
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-transition-144-fps-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-on-command = [
+					/* init code */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					/* err flag */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 00 00 00 02 CF 02
+					/* reload gamma */
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 00 00 00 05 EA 0F 41 00 88
+					/* ON/OFF function */
+					39 00 00 40 00 00 03 F0 AA 11
+					39 00 00 40 00 00 02 C3 31
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 11
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 E0
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					/* OD and DMR by V clr */
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					/* soft vglr */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F4 20
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 02
+					39 00 00 00 00 00 02 FB 53
+					/* Save power consumption */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					/* upls lp11 mipi err */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					/* follow P2 black code */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0F
+					39 00 00 40 00 00 02 F9 53
+					/* normal setting */
+					39 00 00 40 00 00 02 03 01
+					39 00 00 40 00 00 02 35 00
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					//120hz
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 02 6D 00
+					/* vesa setting */
+					39 00 00 40 00 00 5F 70 12 00 00 AB 30 80 09 CE 04 84 00 0A 02 42 02 42 02 00 02 22 00 20 00 D7 00 08 00 0C 0A AB 09 8D 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00
+					/* PMIC 1 */
+					39 00 00 40 00 00 02 72 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					/* Error flag optimization */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 87
+					/* dummy setting */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 B0 02
+					/* cover AOD problem */
+					39 00 00 40 00 00 03 F0 AA 12
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 D1 00
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 09
+					39 00 00 40 00 00 02 CF 5B
+					/* gating mipi error */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 03 CF DD 59
+					/* FOD_CRC_SKIP_FRAME */
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 C0 03
+					/* OTK */
+					39 00 00 40 00 00 03 F0 AA 14
+					39 00 00 40 00 00 02 C1 0B
+					39 00 00 40 00 00 20 C3 41 33 0C 03 1C 03 1C 03 1C 03 1A 03 1C 03 1C 03 1C 00 C7 00 C7 00 C7 00 C7 00 31 00 31 00 31
+					39 00 00 40 00 00 03 F0 AA 00
+					//120hz
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 03 B1 00 21
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 CB 0A 00
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 03 D2 09 67
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+			timing@wqhd_normal_144hz_index_02 {
+				#include "dsi-panel-athens-42-0d-0a-dsc-cmd-common.dtsi"
+				cell-index = <2>;
+				qcom,mdss-dsi-panel-framerate = <144>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//144hz
+					15 00 00 00 00 00 02 6C 02
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//144hz
+					39 00 00 40 00 00 02 6C 02
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-on-command = [
+					/* init code */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					/* err flag */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 00 00 00 02 CF 02
+					/* reload gamma */
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 00 00 00 05 EA 0F 41 00 88
+					/* ON/OFF function */
+					39 00 00 40 00 00 03 F0 AA 11
+					39 00 00 40 00 00 02 C3 31
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 11
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 E0
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					/* OD and DMR by V clr */
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					/* soft vglr */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F4 20
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 02
+					39 00 00 00 00 00 02 FB 53
+					/* Save power consumption */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					/* upls lp11 mipi err */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					/* follow P2 black code */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0F
+					39 00 00 40 00 00 02 F9 53
+					/* normal setting */
+					39 00 00 40 00 00 02 03 01
+					39 00 00 40 00 00 02 35 00
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 02 6D 00
+					/* vesa setting */
+					39 00 00 40 00 00 5F 70 12 00 00 AB 30 80 09 CE 04 84 00 0A 02 42 02 42 02 00 02 22 00 20 00 D7 00 08 00 0C 0A AB 09 8D 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00
+					/* PMIC 1 */
+					39 00 00 40 00 00 02 72 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					/* Error flag optimization */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 87
+					/* dummy setting */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 B0 02
+					/* cover AOD problem */
+					39 00 00 40 00 00 03 F0 AA 12
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 D1 00
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 09
+					39 00 00 40 00 00 02 CF 5B
+					/* gating mipi error */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 03 CF DD 59
+					/* FOD_CRC_SKIP_FRAME */
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 C0 03
+					/* OTK */
+					39 00 00 40 00 00 03 F0 AA 14
+					39 00 00 40 00 00 02 C1 0B
+					39 00 00 40 00 00 20 C3 41 33 0C 03 1C 03 1C 03 1C 03 1A 03 1C 03 1C 03 1C 00 C7 00 C7 00 C7 00 C7 00 31 00 31 00 31
+					39 00 00 40 00 00 03 F0 AA 00
+					/* 144hz */
+					39 00 00 40 00 00 02 6C 02
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+			timing@wqhd_normal_185hz_index_03 {
+				#include "dsi-panel-athens-42-0d-0a-dsc-cmd-common.dtsi"
+				cell-index = <3>;
+				qcom,mdss-dsi-panel-framerate = <185>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//185hz
+					15 00 00 00 00 00 02 6C 03
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//185hz
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 B1 00 21
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 EB 0A 00
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 D2 09 14
+					39 00 00 40 00 00 02 6C 03
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-transition-fps-command = [
+					//from 165Hz to 185Hz - add 144Hz
+					39 00 00 60 00 00 02 6C 02
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 03 00 03 F0 AA 00
+					//185hz
+					39 00 00 60 00 00 03 F0 AA 10
+					39 00 00 60 00 00 02 65 19
+					39 00 00 60 00 00 03 B1 00 21
+					39 00 00 60 00 00 03 F0 AA 13
+					39 00 00 60 00 00 03 EB 0A 00
+					39 00 00 60 00 00 03 F0 AA 16
+					39 00 00 60 00 00 02 65 19
+					39 00 00 60 00 00 03 D2 09 14
+					39 00 00 60 00 00 02 6C 03
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-transition-fps-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-on-command = [
+					/* init code */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					/* err flag */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 00 00 00 02 CF 02
+					/* reload gamma */
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 00 00 00 05 EA 0F 41 00 88
+					/* ON/OFF function */
+					39 00 00 40 00 00 03 F0 AA 11
+					39 00 00 40 00 00 02 C3 31
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 11
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 E0
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					/* OD and DMR by V clr */
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					/* soft vglr */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F4 20
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 02
+					39 00 00 00 00 00 02 FB 53
+					/* Save power consumption */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					/* upls lp11 mipi err */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					/* follow P2 black code */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0F
+					39 00 00 40 00 00 02 F9 53
+					/* normal setting */
+					39 00 00 40 00 00 02 03 01
+					39 00 00 40 00 00 02 35 00
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 02 6D 00
+					/* vesa setting */
+					39 00 00 40 00 00 5F 70 12 00 00 AB 30 80 09 CE 04 84 00 0A 02 42 02 42 02 00 02 22 00 20 00 D7 00 08 00 0C 0A AB 09 8D 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00
+					/* PMIC 1 */
+					39 00 00 40 00 00 02 72 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					/* Error flag optimization */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 87
+					/* dummy setting */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 B0 02
+					/* cover AOD problem */
+					39 00 00 40 00 00 03 F0 AA 12
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 D1 00
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 09
+					39 00 00 40 00 00 02 CF 5B
+					/* gating mipi error */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 03 CF DD 59
+					/* FOD_CRC_SKIP_FRAME */
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 C0 03
+					/* OTK */
+					39 00 00 40 00 00 03 F0 AA 14
+					39 00 00 40 00 00 02 C1 0B
+					39 00 00 40 00 00 20 C3 41 33 0C 03 1C 03 1C 03 1C 03 1A 03 1C 03 1C 03 1C 00 C7 00 C7 00 C7 00 C7 00 31 00 31 00 31
+					39 00 00 40 00 00 03 F0 AA 00
+					/* 185hz */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 B1 00 21
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 EB 0A 00
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 D2 09 14
+					39 00 00 40 00 00 02 6C 03
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+			timing@wqhd_normal_90hz_index_04 {
+				#include "dsi-panel-athens-42-0d-0a-dsc-cmd-common.dtsi"
+				cell-index = <4>;
+				qcom,mdss-dsi-panel-framerate = <90>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//90hz
+					15 00 00 00 00 00 02 6C 00
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//90hz
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 03 B1 03 79
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 CB 0D 58
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 03 D2 0C BF
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 01
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-transition-fps-command = [
+					//from 120Hz to 90Hz - add 60Hz
+					39 00 00 60 00 00 02 6C 01
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 05 00 03 F0 AA 00
+					//90hz
+					39 00 00 60 00 00 03 F0 AA 10
+					39 00 00 60 00 00 02 65 04
+					39 00 00 60 00 00 03 B1 03 79
+					39 00 00 60 00 00 03 F0 AA 13
+					39 00 00 60 00 00 03 CB 0D 58
+					39 00 00 60 00 00 03 F0 AA 16
+					39 00 00 60 00 00 02 65 13
+					39 00 00 60 00 00 03 D2 0C BF
+					39 00 00 60 00 00 02 6C 00
+					39 00 00 60 00 00 02 5E 01
+					39 00 00 20 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-transition-fps-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-timing-switch-transition-144-fps-command = [
+					//from 165Hz/185Hz to 90Hz - add 144Hz
+					39 00 00 60 00 00 02 6C 02
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 03 00 03 F0 AA 00
+					//90hz
+					39 00 00 60 00 00 03 F0 AA 10
+					39 00 00 60 00 00 02 65 04
+					39 00 00 60 00 00 03 B1 03 79
+					39 00 00 60 00 00 03 F0 AA 13
+					39 00 00 60 00 00 03 CB 0D 58
+					39 00 00 60 00 00 03 F0 AA 16
+					39 00 00 60 00 00 02 65 13
+					39 00 00 60 00 00 03 D2 0C BF
+					39 00 00 60 00 00 02 6C 00
+					39 00 00 60 00 00 02 5E 01
+					39 00 00 20 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-transition-144-fps-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-on-command = [
+					/* init code */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					/* err flag */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 00 00 00 02 CF 02
+					/* reload gamma */
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 00 00 00 05 EA 0F 41 00 88
+					/* ON/OFF function */
+					39 00 00 40 00 00 03 F0 AA 11
+					39 00 00 40 00 00 02 C3 31
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 11
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 E0
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					/* OD and DMR by V clr */
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					/* soft vglr */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F4 20
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 02
+					39 00 00 00 00 00 02 FB 53
+					/* Save power consumption */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					/* upls lp11 mipi err */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					/* follow P2 black code */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0F
+					39 00 00 40 00 00 02 F9 53
+					/* normal setting */
+					39 00 00 40 00 00 02 03 01
+					39 00 00 40 00 00 02 35 00
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 02 6D 00
+					/* vesa setting */
+					39 00 00 40 00 00 5F 70 12 00 00 AB 30 80 09 CE 04 84 00 0A 02 42 02 42 02 00 02 22 00 20 00 D7 00 08 00 0C 0A AB 09 8D 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00
+					/* PMIC 1 */
+					39 00 00 40 00 00 02 72 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					/* Error flag optimization */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 87
+					/* dummy setting */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 B0 02
+					/* cover AOD problem */
+					39 00 00 40 00 00 03 F0 AA 12
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 D1 00
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 09
+					39 00 00 40 00 00 02 CF 5B
+					/* gating mipi error */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 03 CF DD 59
+					/* FOD_CRC_SKIP_FRAME */
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 C0 03
+					/* OTK */
+					39 00 00 40 00 00 03 F0 AA 14
+					39 00 00 40 00 00 02 C1 0B
+					39 00 00 40 00 00 20 C3 41 33 0C 03 1C 03 1C 03 1C 03 1A 03 1C 03 1C 03 1C 00 C7 00 C7 00 C7 00 C7 00 31 00 31 00 31
+					39 00 00 40 00 00 03 F0 AA 00
+					/* 90hz */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 03 B1 03 79
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 CB 0D 58
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 03 D2 0C BF
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 01
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+			timing@wqhd_normal_165hz_index_05 {
+				#include "dsi-panel-athens-42-0d-0a-dsc-cmd-common.dtsi"
+				cell-index = <5>;
+				qcom,mdss-dsi-panel-framerate = <165>;
+				qcom,mdss-dsi-h-sync-skew = <0>;
+				qcom,mdss-dsi-nolp-command = [
+					05 00 00 00 00 00 01 38
+					39 00 00 00 00 00 03 51 00 23
+					//165hz
+					15 00 00 00 00 00 02 6C 03
+				];
+				qcom,mdss-dsi-nolp-command-update = <0x51 1 2>;
+				qcom,mdss-dsi-nolp-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-command = [
+					//165hz
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 B1 01 55
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 EB 0B 34
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 D2 0A 48
+					39 00 00 40 00 00 02 6C 03
+					39 00 00 40 00 00 02 5E 01
+					39 00 00 00 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-timing-switch-transition-fps-command = [
+					//from 185Hz to 165Hz - add 144Hz
+					39 00 00 60 00 00 02 6C 02
+					39 00 00 60 00 00 02 5E 00
+					39 00 00 20 03 00 03 F0 AA 00
+					//165hz
+					39 00 00 60 00 00 03 F0 AA 10
+					39 00 00 60 00 00 02 65 19
+					39 00 00 60 00 00 03 B1 01 55
+					39 00 00 60 00 00 03 F0 AA 13
+					39 00 00 60 00 00 03 EB 0B 34
+					39 00 00 60 00 00 03 F0 AA 16
+					39 00 00 60 00 00 02 65 19
+					39 00 00 60 00 00 03 D2 0A 48
+					39 00 00 60 00 00 02 6C 03
+					39 00 00 60 00 00 02 5E 01
+					39 00 00 20 00 00 03 F0 AA 00
+				];
+				qcom,mdss-dsi-timing-switch-transition-fps-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-on-command = [
+					/* init code */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 04 EA 48 CB 01
+					39 00 00 40 00 00 02 65 0D
+					39 00 00 40 00 00 04 EA 0C 00 01
+					39 00 00 40 00 00 02 65 10
+					39 00 00 40 00 00 04 EA 0C 80 01
+					39 00 00 40 00 00 02 65 13
+					39 00 00 40 00 00 04 EA C8 AE 01
+					39 00 00 40 00 00 02 65 16
+					39 00 00 40 00 00 04 EA 64 C1 01
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 04 EA 98 A5 01
+					39 00 00 40 00 00 02 65 28
+					39 00 00 40 00 00 04 EA 0C 00 00
+					39 00 00 40 00 00 02 65 0A
+					39 00 00 00 00 00 02 EB 10
+					/* err flag */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 C7 03
+					39 00 00 40 00 00 02 65 01
+					39 00 00 00 00 00 02 CF 02
+					/* reload gamma */
+					39 00 00 40 00 00 02 59 09
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 04 EB 00 00 30
+					39 00 00 00 00 00 05 EA 0F 41 00 88
+					/* ON/OFF function */
+					39 00 00 40 00 00 03 F0 AA 11
+					39 00 00 40 00 00 02 C3 31
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 D0 11
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 C0 E0
+					39 00 00 40 00 00 03 F0 AA 1A
+					39 00 00 40 00 00 02 B0 01
+					/* OD and DMR by V clr */
+					39 00 00 40 00 00 03 FF 5A 83
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 02 F8 05
+					/* soft vglr */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F4 20
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 02
+					39 00 00 00 00 00 02 FB 53
+					/* Save power consumption */
+					39 00 00 40 00 00 03 FF 5A 81
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 F3 04
+					39 00 00 40 00 00 02 65 05
+					39 00 00 40 00 00 02 F3 48
+					/* upls lp11 mipi err */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0E
+					39 00 00 40 00 00 02 F9 A1
+					/* follow P2 black code */
+					39 00 00 40 00 00 03 FF 5A 80
+					39 00 00 40 00 00 02 65 0F
+					39 00 00 40 00 00 02 F9 53
+					/* normal setting */
+					39 00 00 40 00 00 02 03 01
+					39 00 00 40 00 00 02 35 00
+					39 00 00 40 00 00 02 53 20
+					39 00 00 40 00 00 03 51 00 00
+					39 00 00 40 00 00 02 6B 00
+					39 00 00 40 00 00 02 6F 02
+					39 00 00 40 00 00 02 6C 00
+					39 00 00 40 00 00 02 5E 00
+					39 00 00 40 00 00 02 6D 00
+					/* vesa setting */
+					39 00 00 40 00 00 5F 70 12 00 00 AB 30 80 09 CE 04 84 00 0A 02 42 02 42 02 00 02 22 00 20 00 D7 00 08 00 0C 0A AB 09 8D 18 00 11 00 07 10 20 00 06 0F 0F 33 0E 1C 2A 38 46 54 62 69 70 77 79 7B 7D 7E 02 02 22 00 2A 40 2A BE 3A FC 3A FA 3A F8 3B 38 3B 78 3B B6 4B B6 4B F4 4B F4 6C 34 84 74 74 00 00 00 00 00
+					/* PMIC 1 */
+					39 00 00 40 00 00 02 72 00
+					05 00 00 00 78 00 01 11
+					05 00 00 00 00 00 01 29
+					/* Error flag optimization */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 01
+					39 00 00 40 00 00 02 CF 87
+					/* dummy setting */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 04
+					39 00 00 40 00 00 02 B0 02
+					/* cover AOD problem */
+					39 00 00 40 00 00 03 F0 AA 12
+					39 00 00 40 00 00 02 65 02
+					39 00 00 40 00 00 02 D1 00
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 09
+					39 00 00 40 00 00 02 CF 5B
+					/* gating mipi error */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 0B
+					39 00 00 40 00 00 03 CF DD 59
+					/* FOD_CRC_SKIP_FRAME */
+					39 00 00 40 00 00 03 F0 AA 19
+					39 00 00 40 00 00 02 65 03
+					39 00 00 40 00 00 02 C0 03
+					/* OTK */
+					39 00 00 40 00 00 03 F0 AA 14
+					39 00 00 40 00 00 02 C1 0B
+					39 00 00 40 00 00 20 C3 41 33 0C 03 1C 03 1C 03 1C 03 1A 03 1C 03 1C 03 1C 00 C7 00 C7 00 C7 00 C7 00 31 00 31 00 31
+					39 00 00 40 00 00 03 F0 AA 00
+					/* 165hz */
+					39 00 00 40 00 00 03 F0 AA 10
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 B1 01 55
+					39 00 00 40 00 00 03 F0 AA 13
+					39 00 00 40 00 00 03 EB 0B 34
+					39 00 00 40 00 00 03 F0 AA 16
+					39 00 00 40 00 00 02 65 19
+					39 00 00 40 00 00 03 D2 0A 48
+					39 00 00 40 00 00 02 6C 03
+					39 00 00 40 00 00 02 5E 01
+					39 00 00 40 00 00 03 F0 AA 00
+					39 00 00 00 00 00 03 FF 5A 00
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+			};
+		};
+	};
+};
+&dsi_athens_42_0d_0a_dsc_cmd {
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_athens>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <7>;
+	qcom,mdss-dsi-bl-max-level = <16383>;
+	qcom,bl-dsc-cmd-state = "dsi_hs_mode";
+	qcom,mdss-brightness-max-level = <16383>;
+	qcom,mdss-brightness-init-level = <1315>;
+	qcom,platform-reset-gpio = <&tlmm 98 0>;
+	//qcom,platform-pmic-reset-gpio = <&tlmm 171 0>;
+	mi,panel-nt336-ason08-gpio  = <&tlmm 212 0>;
+	mi,panel-nt336-ason18-gpio  = <&tlmm 214 0>;
+
+	mi,panel-id = <0x00513131 0x00420D0A>;
+	mi,dsi-panel-backplane-technology = "LTPS";
+	mi,panel-on-dimming-delay = <120>;
+
+	/* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+	mi,esd-err-irq-gpio = <&tlmm 97 0x2008>;
+	mi,esd-err-irq-gpio-flag = <0x2008>;
+
+	mi,mdss-dsi-panel-wp-read-command = [06 01 00 01 00 00 01 5C];
+	mi,mdss-dsi-panel-wp-read-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-wp-read-length = <8>;
+
+	mi,mdss-dsi-panel-cell-id-read-command = [06 01 00 01 00 00 01 5A];
+	mi,mdss-dsi-panel-cell-id-read-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-cell-id-read-length = <14>;
+
+	mi,mdss-dsi-fac-bl-max-level = <7800>;
+	mi,mdss-fac-brightness-max-level = <7800>;
+
+	mi,flatmode-status-check-enabled;
+	mi,mdss-dsi-panel-flatmode-status-offset-command = [
+		39 00 00 00 00 00 03 F0 AA 11
+	];
+	mi,mdss-dsi-panel-flatmode-status-offset-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-flatmode-status-command = [
+		06 01 00 01 00 00 01 D5
+	];
+	mi,mdss-dsi-panel-flatmode-status-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-flatmode-status-read-length = <1>;
+	mi,mdss-dsi-panel-flatmode-on-status-value = <0x13>;
+
+	mi,doze-hbm-dbv-level = <1100>;
+	mi,doze-lbm-dbv-level = <205>;
+	mi,ddic-round-corner-enabled;
+
+	mi,max-brightness-normal = <5090>;
+
+	mi,panel-build-id-read-needed;
+	mi,panel-build-id-read-length = <1>;
+	mi,mdss-dsi-panel-build-id-read-command = [06 01 00 01 00 00 01 DA];
+	mi,mdss-dsi-panel-build-id-read-command-state = "dsi_hs_mode";
+
+	qcom,ulps-enabled;
+	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+	qcom,mdss-dsi-clk-strength = <0xFF>;
+};

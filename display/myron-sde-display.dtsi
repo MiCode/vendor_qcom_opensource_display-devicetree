@@ -1,0 +1,243 @@
+#include "canoe-sde-display.dtsi"
+#include "dsi-panel-p11u-42-0d-0a-dsc-cmd.dtsi"
+#include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/clock/qcom,gcc-canoe.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/interconnect/qcom,canoe.h>
+#include <dt-bindings/gpio/gpio.h>
+#include "dsi-panel-p11u-42-0d-0a-p00-dsc-cmd.dtsi"
+#include "dsi-panel-p11u-42-0d-0a-p01-dsc-cmd.dtsi"
+#include "dsi-panel-p11u-42-0d-0a-p1-dsc-cmd.dtsi"
+
+&soc {
+	display_panel_vddd_p11u: display_panel_vddd_p11u {
+		compatible = "regulator-fixed";
+		regulator-name = "display_panel_vddd_p11u";
+		regulator-min-microvolt = <1200000>;
+		regulator-max-microvolt = <1200000>;
+		gpio = <&tlmm 90 0>;
+		enable-active-high;
+		regulator-boot-on;
+	};
+
+	dsi_panel_pwr_supply_p11u: dsi_panel_pwr_supply_p11u {
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <0>;
+		};
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <2>;
+			qcom,supply-post-off-sleep = <2>;
+		};
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vddd";
+			qcom,supply-min-voltage = <1200000>;
+			qcom,supply-max-voltage = <1200000>;
+			qcom,supply-enable-load = <300000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+			qcom,supply-post-off-sleep = <2>;
+			qcom,supply-pre-off-sleep = <1>;
+		};
+	};
+};
+
+
+&sde_dp {
+	qcom,dp-aux-switch = <>;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_nt37801_amoled_fhd_plus_cmd>;
+	vddd-supply = <&display_panel_vddd_p11u>;
+	vddio-supply = <&L12B>;
+	vci-supply = <&L13B>;
+	pinctrl-names = "panel_active", "panel_suspend";
+	pinctrl-0 = <&sde_dsi_active &sde_te_active>;
+	pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
+};
+
+&sde_dsi1 {
+	status = "disabled";
+};
+
+&sde_dp {
+	qcom,max-lclk-frequency-khz = <540000>;
+	status = "ok";
+};
+
+&mdss_mdp {
+	connectors = <&sde_dsi &smmu_sde_unsec &smmu_sde_sec &sde_wb0 &sde_wb1 &sde_dp>;
+};
+
+/* NVT device tree node and ASIC Start */
+&aliases {
+	hsuart1 = &qupv3_se17_2uart;
+};
+
+&tlmm {
+	nvt_xtal_en_active: nvt_xtal_en_active {
+		mux {
+			pins = "gpio173";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio173";
+			drive-strength = <2>;  /* 2 mA */
+			bias-pull-down;
+			output-high;
+		};
+	};
+
+	nvt_xtal_en_sleep: nvt_xtal_en_sleep {
+		mux {
+			pins = "gpio173";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio173";
+			drive-strength = <2>;  /* 2 mA */
+			bias-pull-down;
+			output-low;
+		};
+	};
+
+	qupv3_se17_2uart_pins: qupv3_se17_2uart_pins {
+		qupv3_se17_2uart_tx_active: qupv3_se17_2uart_tx_active {
+			mux {
+				pins = "gpio22";
+				function = "qup3_se4_l2";
+			};
+
+			config {
+				pins = "gpio22";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se17_2uart_rx_active: qupv3_se17_2uart_rx_active {
+			mux {
+				pins = "gpio23";
+				function = "qup3_se4_l3";
+			};
+
+			config {
+				pins = "gpio23";
+				drive-strength = <2>;
+				bias-disable;
+			};
+		};
+
+		qupv3_se17_2uart_sleep: qupv3_se17_2uart_sleep {
+			mux {
+				pins = "gpio22", "gpio23";
+				function = "gpio";
+			};
+
+			config {
+				pins = "gpio22", "gpio23";
+				drive-strength = <2>;
+				bias-pull-down;
+			};
+		};
+	};
+};
+
+&qupv3_3 {
+	qupv3_se17_2uart: qcom,qup_uart@1990000 {
+		compatible = "qcom,msm-geni-serial-hs";
+		reg = <0x1990000 0x4000>;
+		reg-names = "se_phys";
+		interrupts-extended = <&intc GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>,
+					<&tlmm 23 IRQ_TYPE_LEVEL_HIGH>;
+		clock-names = "se-clk";
+		clocks = <&gcc GCC_QUPV3_WRAP3_S4_CLK>;
+		interconnect-names = "qup-core", "qup-config", "qup-memory";
+		interconnects =
+		<&clk_virt MASTER_QUP_CORE_3 &clk_virt SLAVE_QUP_CORE_3>,
+		<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_QUP_3>,
+		<&aggre2_noc MASTER_QUP_3 &mc_virt  SLAVE_EBI1>;
+		pinctrl-names = "default", "active", "sleep", "shutdown";
+		pinctrl-0 = <&qupv3_se17_2uart_tx_active>, <&qupv3_se17_2uart_rx_active>;
+		pinctrl-1 = <&qupv3_se17_2uart_tx_active>, <&qupv3_se17_2uart_rx_active>;
+		pinctrl-2 = <&qupv3_se17_2uart_sleep>;
+		pinctrl-3 = <&qupv3_se17_2uart_sleep>;
+		qcom,auto-suspend-disable;
+		status = "ok";
+	};
+};
+
+
+&qupv3_se15_spi {
+	status = "ok";
+
+	nvt {
+		compatible = "novatek,vis-display";
+		reg = <0x0>;
+		status = "ok";
+		spi-max-frequency = <24000000>;
+		nvt,always08 = <&tlmm 212 0>;
+		nvt,always18 = <&tlmm 214 0>;
+		nvt,vsel = <&tlmm 215 0>;
+		nvt,resetN = <&tlmm 30 0>;
+		nvt,ready = <&tlmm 55 0>;
+		nvt,abnormal = <&tlmm 77 0>;
+		nvt,xtalEN = <&tlmm 173 0>;
+		clocks = <&rpmhcc RPMH_DIV_CLK1>;
+		clock-names = "mclk";
+		pinctrl-names = "default","sleep";
+		pinctrl-0 = <&nvt_xtal_en_active>;
+		pinctrl-1 = <&nvt_xtal_en_sleep>;
+	};
+};
+
+&qupv3_se19_spi {
+	focaltech_ts@0 {
+		panel = <&dsi_p11u_42_0d_0a_dsc_cmd
+			&dsi_p11u_42_0d_0a_p1_dsc_cmd
+			&dsi_p11u_42_0d_0a_p01_dsc_cmd
+			&dsi_p11u_42_0d_0a_p00_dsc_cmd
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+};
+/* NVT device tree node and ASIC End */
+
+&soc {
+	charge_screen: charge-screen {
+		panel  = <&dsi_p11u_42_0d_0a_dsc_cmd
+			&dsi_p11u_42_0d_0a_p1_dsc_cmd
+			&dsi_p11u_42_0d_0a_p01_dsc_cmd
+			&dsi_p11u_42_0d_0a_p00_dsc_cmd
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+	thermal_screen: thermal-screen {
+		panel = <&dsi_p11u_42_0d_0a_dsc_cmd
+			&dsi_p11u_42_0d_0a_p1_dsc_cmd
+			&dsi_p11u_42_0d_0a_p01_dsc_cmd
+			&dsi_p11u_42_0d_0a_p00_dsc_cmd
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+	fingerprint_screen: fingerprint-screen {
+		panel = <&dsi_p11u_42_0d_0a_dsc_cmd
+			&dsi_p11u_42_0d_0a_p1_dsc_cmd
+			&dsi_p11u_42_0d_0a_p01_dsc_cmd
+			&dsi_p11u_42_0d_0a_p00_dsc_cmd
+			&dsi_nt37801_amoled_fhd_plus_cmd>;
+	};
+};

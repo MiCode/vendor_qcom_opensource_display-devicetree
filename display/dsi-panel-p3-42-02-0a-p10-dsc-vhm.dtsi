@@ -1,0 +1,602 @@
+&mdss_mdp {
+	dsi_p3_42_02_0a_p10_dsc_vhm: qcom,mdss_dsi_p3_42_02_0a_p10_dsc_vhm {
+		qcom,mdss-dsi-panel-name = "xiaomi p3 42 02 0a vhm mode dsc dsi panel";
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,mdss-dsi-panel-physical-type = "oled";
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-bpp = <30>;
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+		qcom,mdss-dsi-traffic-mode = "burst_mode";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-reset-sequence =<1 1>, <0 1>, <1 10>;
+		qcom,mdss-pan-physical-width-dimension = <673>;
+		qcom,mdss-pan-physical-height-dimension = <1466>;
+		qcom,mdss-dsi-te-pin-select = <1>;
+		qcom,mdss-dsi-wr-mem-start = <0x2c>;
+		qcom,mdss-dsi-wr-mem-continue = <0x3c>;
+		//qcom,mdss-dsi-te-dcs-command = <1>;
+		//qcom,mdss-dsi-te-check-enable;
+		//qcom,mdss-dsi-te-using-te-pin;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-bl-inverted-dbv;
+		qcom,mdss-dsi-panel-dimming-enabled;
+		qcom,bl-update-flag = "delay_until_first_frame";
+		qcom,mdss-dsi-panel-hdr-enabled;
+		qcom,mdss-dsi-panel-hdr-color-primaries = <14500 15500 32000
+			17000 15500 30000 8000 3000>;
+		qcom,mdss-dsi-panel-peak-brightness = <32000000>;
+		qcom,mdss-dsi-panel-blackness-level = <3230>;
+		//qcom,mdss-dsi-dma-schedule-line = <1>;
+		//qcom,mdss-dsi-dma-schedule-window = <50>;
+		qcom,spr-pack-type = "pentile";
+		/*
+		 * ###############################################################
+		 * # Pentile SPR phases for SM8850 and later
+		 * ###############################################################
+		 * # RG/BG Type A    BG/RG Type A    GR/GB Type A    GB/GR Type A
+		 * # R B R B ...     B R B R ...      R B R B ...     B R B R ...
+		 * #  G G G G ...     G G G G ...    G G G G ...     G G G G ...
+		 * #
+		 * # RG/BG Type B    BG/RG Type B    GR/GB Type B    GB/GR Type B
+		 * #  G G G G ...     G G G G ...    G G G G ...     G G G G ...
+		 * # R B R B ...     B R B R ...      R B R B ...     B R B R ...
+		 * ###############################################################
+		 */
+		qcom,spr-pentile-pack-type = "BG-RG Type A";
+
+		qcom,mdss-disable-cesta-hw-sleep;
+
+		qcom,mdss-dsi-display-timings {
+			timing@wqhd_normal_120hz_index_00 {
+				#include "dsi-panel-p3-42-02-0a-p10-dsc-vhm-common.dtsi"
+				cell-index = <0>;
+				qcom,mdss-dsi-panel-framerate = <120>;
+
+				qcom,mdss-esync-hsync-milli-pulse-width = <600>;
+				qcom,mdss-esync-emsync-milli-pulse-width = <300>;
+				qcom,mdss-esync-emsync-fps = <360>;
+				qcom,dsi-qsync-mode-avr-step-fps = <360>;
+				qcom,qsync-mode-min-refresh-rate = <20>;
+
+				qcom,mdss-dsi-on-command = [
+					// EM TH2 Duty Setting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 75
+					39 00 00 40 00 00 09 B2 00 28 00 28 00 28 00 28
+					15 00 00 40 00 00 02 6F 71
+					39 00 00 00 00 00 03 B2 00 28
+					//PMIC Fast discharge
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 B5 65
+					15 00 00 40 00 00 02 6F 51
+					15 00 00 40 00 00 02 D5 02
+					15 00 00 40 00 00 02 6F 54
+					15 00 00 00 00 00 02 D5 3F
+					// Flash_program_start
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 00 00 00 02 C0 20
+					// APL W255+Data Scaling Normal 32,HBM 8,APL 0
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 78
+					39 00 00 40 00 00 18 B0 11 00 2A 00 C2 01 DA 03 7C 05 B1 08 80 0B EE 0F FF 05 55 05 56 05 55
+					15 00 00 40 00 00 02 6F 6F
+					39 00 00 40 00 00 07 B0 02 62 04 C4 02 62
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 17 C1 9D FF DD FF FF DD FF FF DD FF FF DD FF FF DD FF FF FF 7F FF 0E FF
+					15 00 00 40 00 00 02 6F 1D
+					39 00 00 40 00 00 07 C1 00 FF FF 4F 00 FF
+					15 00 00 40 00 00 02 6F 23
+					39 00 00 40 00 00 15 C1 0D FF DD FF FF DD FF FF DD FF FF DD FF FF DD FF FF CF 7F 67
+					15 00 00 40 00 00 02 6F 37
+					39 00 00 40 00 00 15 C1 0D FF DD FF FF DD FF FF DD FF FF DD FF FF DD FF FF FF 7F FF
+					15 00 00 40 00 00 02 6F 4B
+					39 00 00 00 00 00 15 C1 0D FF DD FF FF DD FF FF DD FF FF DD FF FF DD FF FF CF 7F 67
+					// Data Scaling DBV_TH
+					39 00 00 00 00 00 2D BA 00 07 00 0F 00 0F 00 2D 00 2D 00 60 00 60 00 F0 00 F0 02 5F 02 5F 02 60 02 60 07 FB 07 FB 17 FE 17 FE 1F FF 1F FF 34 BC 34 BC 3F FE
+					//Switch VGMP by Fcon
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 16
+					39 00 00 00 00 00 05 C6 87 18 04 04
+					// ESD ERR Flag
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 03 BE 47 45
+					15 00 00 40 00 00 02 6F 05
+					15 00 00 40 00 00 02 BE 00
+					15 00 00 40 00 00 02 6F 19
+					39 00 00 00 00 00 05 BE 10 0A 00 9C
+					// DVDD Low Voltage detect
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 C7 C7
+					// ESD protect
+					39 00 00 40 00 00 05 FF AA 55 A5 81
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 00 00 00 02 FD 80
+					// 1220x2656
+					39 00 00 40 00 00 05 2A 00 00 04 C3
+					39 00 00 00 00 00 05 2B 00 00 0A 5F
+					// DC 120Hz
+					15 00 00 40 00 00 02 2F 30
+					15 00 00 00 00 00 02 6D 00
+					// TE On
+					15 00 00 00 00 00 02 35 00
+					// DBV =00
+					39 00 00 00 00 00 03 51 00 00
+					// idle_dimming_dbv =00
+					15 00 00 40 00 00 02 6F 04
+					39 00 00 40 00 00 03 51 00 00
+					// BCTRL = 1, DD = 0
+					15 00 00 40 00 00 02 53 20
+					// Data remap
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 02
+					15 00 00 00 00 00 02 B2 0F
+					// Demura OTP not write
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C7 44
+					15 00 00 40 00 00 02 6F 31
+					39 00 00 00 00 00 03 C0 01 20
+					// FrameRate SKIP Setting Temp
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 11 BA 01 01 01 01 01 01 00 03 01 01 00 03 00 00 00 00
+					15 00 00 40 00 00 02 6F 2C
+					39 00 00 40 00 00 11 BA 01 01 01 01 03 03 01 0B 03 03 01 0B 00 00 00 00
+					15 00 00 40 00 00 02 6F 3C
+					39 00 00 40 00 00 11 BA 01 01 01 01 04 0B 00 00 04 0B 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 4C
+					39 00 00 40 00 00 11 BA 01 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 5C
+					39 00 00 40 00 00 11 BA 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01 01
+					15 00 00 40 00 00 02 6F 6C
+					39 00 00 40 00 00 09 BA 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 74
+					39 00 00 40 00 00 11 BA 00 00 01 01 03 04 0B 77 EF 77 08 77 04 00 00 01
+					15 00 00 40 00 00 02 6F 84
+					39 00 00 40 00 00 11 BA 00 00 01 01 03 04 0B 77 EF 77 08 77 04 00 00 01
+					15 00 00 40 00 00 02 6F 94
+					39 00 00 40 00 00 11 BA 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F A4
+					39 00 00 40 00 00 11 BA 01 01 01 01 01 01 01 1E 01 1E 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F B4
+					39 00 00 40 00 00 05 BA 00 40 E4 00
+					15 00 00 40 00 00 02 6F B8
+					39 00 00 40 00 00 09 BA 10 10 00 00 00 01 20 21
+					15 00 00 40 00 00 02 6F C0
+					39 00 00 40 00 00 09 BA 10 10 00 00 00 01 20 21
+					15 00 00 40 00 00 02 6F 5A
+					39 00 00 40 00 00 09 D1 10 10 00 00 00 01 20 21
+					15 00 00 40 00 00 02 6F 31
+					15 00 00 40 00 00 02 C0 00
+					15 00 00 40 00 00 02 6F 6E
+					39 00 00 40 00 00 03 D1 3F F0
+					15 00 00 40 00 00 02 BE 47
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 35 00
+					15 00 00 40 00 00 02 6F 14
+					15 00 00 40 00 00 02 35 00
+					39 00 00 40 00 00 03 44 0A 60
+					39 00 00 40 00 00 04 8C 00 00 10
+					15 00 00 40 00 00 02 6F 06
+					15 00 00 40 00 00 02 6D 08
+					39 00 00 40 00 00 03 5A 00 00
+					15 00 00 40 00 00 02 2F 30
+					// EM_STV
+					39 00 00 40 00 00 06 F0 55 AA 52 08 05
+					39 00 00 00 00 00 05 B3 86 81 00 00
+					15 00 00 40 00 00 02 18 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 17
+					15 00 00 40 00 00 02 B8 07
+					39 00 00 40 00 00 06 F0 55 AA 52 08 02
+					15 00 00 00 00 00 02 CC 10
+					// AP SPR
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+ 					15 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 07 DE 10 34 25 30 14 25
+					39 00 00 40 00 00 06 F0 55 AA 52 08 07
+					39 00 00 40 00 00 06 B0 84 44 00 00 40
+					39 00 00 40 00 00 07 B1 18 08 00 08 18 00
+					39 00 00 00 00 00 13 91 AB F0 00 10 C1 00 01 CB 00 73 00 33 06 67 1F B0 11 40
+					// DC Stetting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F B8
+					39 00 00 40 00 00 09 BA 10 10 00 00 00 01 20 21
+					15 00 00 40 00 00 02 6F C0
+					39 00 00 40 00 00 09 BA 10 10 00 00 00 01 20 21
+					15 00 00 40 00 00 02 6F 5A
+ 					39 00 00 00 00 00 09 D1 00 00 00 00 00 00 20 20
+					// Demura on
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C7 44
+					15 00 00 40 00 00 02 6F 31
+					39 00 00 40 00 00 03 C0 01 20
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 00 00 00 02 CA 01
+					// default 0x0~0x25F，Backlight
+					39 00 00 40 00 00 03 51 00 00
+					// flash reload option
+					39 00 00 40 00 00 05 FF AA 55 A5 81
+					15 00 00 40 00 00 02 6F 0D
+					15 00 00 00 00 00 02 FD 40
+					//Idle mode porch
+					39 00 00 40 00 00 05 FF AA 55 A5 81
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 00 00 00 02 F5 0E
+					// Page 03
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					// AOD DMR ON
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 C7 FD
+					// Page 04
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					// BRS DM EN
+					15 00 00 40 00 00 02 6F 06
+					15 00 00 40 00 00 02 B5 00
+					39 00 00 00 00 00 06 A3 83 02 5F 02 5F
+					// Vsync Output
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 02
+					39 00 00 40 00 00 03 BE 4F 4A
+					15 00 00 40 00 00 02 6F 0A
+					15 00 00 00 00 00 02 BE 02
+					// Round  Corner
+					39 00 00 40 00 00 06 F0 55 AA 52 08 07
+					39 00 00 40 00 00 0E B8 01 00 F2 09 79 00 00 00 00 00 00 00 00
+					39 00 00 40 00 00 04 C0 87 01 09
+					15 00 00 40 00 00 02 6F 03
+					39 00 00 40 00 00 05 C0 00 00 00 00
+					39 00 00 40 00 00 16 C1 38 0F 05 10 01 21 FB 38 3F FB CD 8C 3F FE EC 8C 00 00 42 B7 39
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C1 7A 00 00 11 00 74 EF 43 F0 86 EF 08 1A C0 00 FF
+					15 00 00 00 00 00 02 6F 25
+					39 00 00 40 00 00 08 C1 00 0A 10 00 6E 74 00
+					39 00 00 40 00 00 16 C2 30 0F 05 A4 07 39 F3 3C 3F F4 F7 24 3F F4 71 78 00 03 68 06 7D
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C2 25 00 11 71 00 12 73 44 F0 A0 A1 23 A0 F0 FF FF
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 C2 00 62 71 00 04 11 00
+					39 00 00 40 00 00 16 C3 3A 0F 05 10 01 00 FB 80 00 05 56 60 00 00 82 C0 7F FF 8D 57 80
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C3 76 44 AF C3 99 7C F3 43 0F 76 14 F6 C8 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 C3 44 51 64 00 00 11 00
+					39 00 00 40 00 00 16 C4 3A 0F 03 C1 04 41 F8 02 00 07 22 D6 00 06 F8 56 7F FD 37 7C F9
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C4 32 44 59 AF 9A F4 4A 44 0F 55 55 E3 C7 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 C4 44 B0 BB 99 F4 FD 00
+					39 00 00 40 00 00 16 C5 32 0F 01 69 0E 89 F6 F2 00 00 DD 16 00 09 D2 36 7F FF 18 B7 91
+					15 00 00 00 00 00 02 6F 15
+					39 00 00 40 00 00 11 C5 15 34 CA 58 AA 4A 5F 34 0F 15 8D F4 6F 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 C5 00 08 13 99 F3 FD 00
+					39 00 00 40 00 00 16 C6 30 0F 01 44 05 A4 FA A8 3F FE C6 20 3F FB 61 58 00 00 4D 3F 64
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C6 12 00 72 EF 00 00 12 34 F0 EE 84 08 B8 30 FF 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 C6 44 B3 B9 00 6E 73 00
+					39 00 00 40 00 00 16 C7 21 00 05 A4 05 A4 00 00 3F FE 53 50 3F FE 53 50 00 00 1F D1 10
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C7 0B 22 3B 61 00 2C 52 33 F0 DA DA 05 A4 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 C7 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 C8 2D 00 05 A4 05 A4 00 00 3F FE 53 50 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C8 1A 22 3B 61 00 53 79 33 C0 DA 26 00 00 00 00 00
+					15 00 00 00 00 00 02 6F 25
+					39 00 00 40 00 00 08 C8 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 C9 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 C9 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 C9 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 CA 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 CA 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 CA 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 CB 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 CB 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 CB 00 00 00 00 00 00 00
+					39 00 00 00 00 00 16 CC 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 CC 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 CC 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 CD 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 CD 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 CD 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 CE 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 CE 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 00 00 00 02 6F 25
+					39 00 00 40 00 00 08 CE 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 CF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 CF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 CF 00 00 00 00 00 00 00
+					39 00 00 40 00 00 16 D0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 15
+					39 00 00 40 00 00 11 D0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 25
+					39 00 00 40 00 00 08 D0 00 00 00 00 00 00 00
+					39 00 00 40 00 00 0F D1 80 00 01 65 DD 04 C3 80 00 10 52 7D 04 C3
+					15 00 00 40 00 00 02 6F 0E
+					39 00 00 00 00 00 0F D1 80 00 00 00 00 04 C3 80 00 09 A4 C1 04 C3
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F D1 80 00 02 6C 29 04 C3 80 00 00 00 00 04 C3
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0C D1 80 00 00 00 00 04 C3 FF FF E0 2E
+					39 00 00 40 00 00 12 D2 F0 04 C3 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 13
+					39 00 00 40 00 00 05 DF 00 00 00 00
+					15 00 00 40 00 00 02 6F 00
+					39 00 00 40 00 00 06 88 00 00 00 00 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 09
+					15 00 00 00 00 00 02 B0 00
+					// vint change
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 06
+					15 00 00 40 00 00 02 D8 70
+					15 00 00 40 00 00 02 6F 38
+					15 00 00 40 00 00 02 B9 32
+					15 00 00 40 00 00 02 6F 3B
+					15 00 00 00 00 00 02 B9 00
+					// Sleep Out
+					05 00 00 00 78 00 01 11
+					// expand demura lut 16DBV*7Gray
+					39 00 00 40 00 00 13 A3 83 02 5F 02 5F 02 04 B5 02 03 00 03 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 12
+					39 00 00 40 00 00 0E A3 01 00 9D 00 00 AA 00 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 53
+					39 00 00 40 00 00 0E A3 02 04 B5 02 03 00 0C 00 00 00 00 00 00
+					15 00 00 40 00 00 02 6F 60
+					39 00 00 40 00 00 0E A3 01 00 9D 00 00 AA 00 00 00 00 00 00 00
+					39 00 00 00 00 00 03 51 00 00
+					// Display On
+					05 00 00 00 00 00 01 29
+					// ESD ERR Flag on
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 05
+					15 00 00 00 00 00 02 BE 28
+
+					// VHM Setting
+					15 00 00 40 00 00 02 6F 8A
+					15 00 00 40 00 00 02 44 19
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 03 BE 47 45
+					// Level_TE(0x6A)、ARP(0x77)、Test_TE(0x7D)
+					15 00 00 40 00 00 02 6F 14
+					39 00 00 40 00 00 04 35 6A 77 E0
+					15 00 00 40 00 00 02 6F 17
+					39 00 00 40 00 00 04 35 6A 77 E0
+					15 00 00 40 00 00 02 6F 1A
+					39 00 00 40 00 00 04 35 6A 77 E0
+					15 00 00 40 00 00 02 6F 1D
+					39 00 00 40 00 00 04 35 6A 77 E0
+					// dyn_multi_te_start[13:0]
+					15 00 00 40 00 00 02 6F 26
+					39 00 00 40 00 00 03 44 00 78
+					// dyn_multi_te_start_skip[13:0]
+					15 00 00 40 00 00 02 6F 28
+					39 00 00 40 00 00 03 44 00 78
+					// dyn_multi_te_start_video[13:0]
+					15 00 00 40 00 00 02 6F 42
+					39 00 00 40 00 00 03 44 00 4D
+					// dyn_multi_te_start_vdo_skip[13:0]
+					15 00 00 40 00 00 02 6F 64
+					39 00 00 40 00 00 03 44 00 4D
+					// dyn_multi_te_width[7:0]
+					15 00 00 40 00 00 02 6F 2A
+					15 00 00 40 00 00 02 44 1A
+					// dyn_multi_te_interval[13:0]=2736
+					15 00 00 40 00 00 02 6F 2B
+					39 00 00 40 00 00 03 44 0A B0
+					// TE07_DPU_DELAY[7:0]
+					15 00 00 40 00 00 02 6F 02
+					15 00 00 40 00 00 02 35 18
+					// SEL_ECK_CYCLE_LINE=0,EXTEND_VFP_LINE_ECLK_EN=0
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 BA 00
+					// TE07_DPU_DELAY_VDO[7:0]
+					15 00 00 40 00 00 02 6F 0C
+					15 00 00 40 00 00 02 35 00
+					// set_dsi_mode=1
+					15 00 00 40 00 00 02 71 01
+					// still=1
+					15 00 00 40 00 00 02 18 00
+					// REGW 0x6D,0x04
+					// EXT_HSYNC_EN=1
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					15 00 00 40 00 00 02 6F 06
+					15 00 00 40 00 00 02 BA 01
+					// DFC_mode3
+					39 00 00 40 00 00 04 2F 30 05 30
+					// ARP_TE
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 35
+					15 00 00 40 00 00 02 B1 10
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					// opt_dis_vdo_ltpo_crc=1
+					15 00 00 40 00 00 02 6F DD
+					15 00 00 40 00 00 02 BA 80
+					// FD
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					15 00 00 40 00 00 02 6F 02
+					15 00 00 40 00 00 02 E0 81
+					// 20250514
+					// opt_v2c_chg_reload_fskip=1
+					// opt_v2c_chg_reload_fskip=0
+					// opt_level2_te_fall=1
+					// REGW 0x6F,0x8A
+					// REGW 0x44,0x11
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F E2
+					15 00 00 40 00 00 02 BA 08
+					39 00 00 40 00 00 05 FF AA 55 A5 81
+					15 00 00 40 00 00 02 6F 00
+					15 00 00 40 00 00 02 FB 10
+					// CMD3,Page1
+					39 00 00 40 00 00 05 FF AA 55 A5 81
+					15 00 00 40 00 00 02 6F 1C
+					15 00 00 40 00 00 02 FB 10
+					// TE_RW_rising_command mode
+					// dyn_multi_te_start=dyn_multi_te_start_skip=0x1A/ =dyn_multi_te_width=0x1A/dyn_multi_te_interval=0x1560
+					15 00 00 40 00 00 02 6F 2D
+					39 00 00 40 00 00 08 44 00 1A 00 1A 1A 15 60
+					// dyn_multi_te_start=dyn_multi_te_start_skip=0x1A/ =dyn_multi_te_width=0x1A/dyn_multi_te_interval=0x1560
+					15 00 00 40 00 00 02 6F 3B
+					39 00 00 40 00 00 08 44 00 1A 00 1A 1A 15 60
+					// 707A
+					15 00 00 40 00 00 02 6F 69
+					15 00 00 00 00 00 02 44 02
+					// TE20_sel_cmd=7D(Test TE)
+					// REGW 0x6F,0x16
+					// REGW 0x35,0xE0
+					// REGW 0x6F,0x19
+					// REGW 0x35,0xE0
+					// REGW 0x6F,0x1C
+					// REGW 0x35,0xE0
+					// REGW 0x6F,0x1F
+					// REGW 0x35,0xE0
+					// DC 1HZ
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 0E
+					15 00 00 40 00 00 02 C0 00
+					15 00 00 40 00 00 02 6F DE
+					15 00 00 40 00 00 02 BA 00
+					15 00 00 40 00 00 02 6F 04
+					15 00 00 40 00 00 02 35 01
+					15 00 00 40 00 00 02 6F 14
+					15 00 00 40 00 00 02 35 6A
+					39 00 00 40 00 00 03 44 0A 60
+					15 00 00 40 00 00 02 8C 02
+					15 00 00 00 00 00 02 6D 0B
+				];
+				qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+
+				qcom,mdss-dsi-esync-post-on-commands = [
+					39 01 00 40 00 00 06 F0 55 AA 52 08 03
+					39 01 00 40 00 00 02 6F 06
+					// 00 -> MIPI Hsync  01 -> Ext Hsync
+					39 01 00 00 00 00 02 BA 01
+				];
+				qcom,mdss-dsi-esync-post-on-commands-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-qsync-freq-step-sequence-interval =
+					<0 120000 2>, <0 30000 1>;
+				qcom,mdss-dsi-qsync-freq-step-sequence  =
+					<30000 1>, <10000 1>,
+					<10000 1>;
+
+				qcom,mdss-dsi-sticky_still_en-command = [
+					39 01 00 00 00 00 14 A9 01 00 18 00 00 01 01 00 35 0C 0C 18 02 00 D1 6E 6F 3F F0
+				];
+				qcom,mdss-dsi-sticky_still_disable-command = [
+					39 01 00 00 00 00 14 A9 01 00 18 00 00 00 01 00 35 0C 0C 00 02 00 D1 6E 6F FF FF
+				];
+				qcom,mdss-dsi-sticky_still_en-command-state = "dsi_hs_mode";
+				qcom,mdss-dsi-sticky_still_disable-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-freq-step-pattern1-command = [
+					// Non Cmd Setting
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+				];
+				qcom,mdss-dsi-freq-step-pattern1-command-state = "dsi_hs_mode";
+
+				qcom,mdss-dsi-freq-step-pattern2-command = [
+					// Non Cmd Setting
+					39 01 00 00 00 00 06 F0 55 AA 52 08 00
+				];
+				qcom,mdss-dsi-freq-step-pattern2-command-state = "dsi_hs_mode";
+
+			};
+		};
+	};
+};
+
+&dsi_p3_42_02_0a_p10_dsc_vhm{
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply_p3>;
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_dcs";
+	qcom,mdss-dsi-bl-min-level = <7>;
+	qcom,mdss-dsi-bl-max-level = <16383>;
+	qcom,bl-dsc-cmd-state = "dsi_hs_mode";
+	qcom,mdss-brightness-max-level = <16383>;
+	qcom,mdss-brightness-init-level = <614>;
+	qcom,platform-reset-gpio = <&tlmm 98 0>;
+	qcom,platform-pmic-reset-gpio = <&tlmm 171 0>;
+
+	mi,panel-id = <0x00005033 0x0042020A>;
+	mi,panel-on-dimming-delay = <120>;
+
+	/* IRQF_ONESHOT | IRQF_TRIGGER_HEIGH */
+	mi,esd-err-irq-gpio = <&tlmm 97 0x2004>;
+	mi,esd-err-irq-gpio-flag = <0x2004>;
+
+	mi,mdss-dsi-fac-bl-max-level = <8191>;
+	mi,mdss-fac-brightness-max-level = <8191>;
+	mi,max-brightness-normal = <6142>;
+
+	mi,mdss-dsi-panel-wp-read-command = [06 01 00 02 00 00 01 A3];
+	mi,mdss-dsi-panel-wp-read-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-wp-read-pre-tx-command = [39 00 00 00 00 00 02 6F 7A];
+	mi,mdss-dsi-panel-wp-read-pre-tx-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-wp-read-length = <8>;
+
+	mi,mdss-dsi-panel-cell-id-read-command = [06 01 00 00 00 00 01 EB];
+	mi,mdss-dsi-panel-cell-id-read-pre-tx-command = [
+		39 00 00 40 00 00 06 F0 55 AA 52 08 00
+		39 00 00 00 00 00 02 EA 10];
+	mi,mdss-dsi-panel-cell-id-read-pre-tx-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-cell-id-read-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-cell-id-read-length = <13>;
+
+	mi,flatmode-status-check-enabled;
+	mi,mdss-dsi-panel-flatmode-status-command = [
+		06 01 00 01 00 00 01 5F
+	];
+	mi,mdss-dsi-panel-flatmode-status-command-state = "dsi_hs_mode";
+	mi,mdss-dsi-panel-flatmode-status-read-length = <1>;
+	mi,mdss-dsi-panel-flatmode-on-status-value = <0x00>;
+
+	mi,doze-hbm-dbv-level = <412>;
+	mi,doze-lbm-dbv-level = <35>;
+
+	//qcom,mdss-dsi-panel-vsync-delay;
+	qcom,ulps-enabled;
+	qcom,dsi-select-clocks = "pll_byte_clk0", "pll_dsi_clk0";
+	qcom,mdss-dsi-clk-strength = <0x88>;
+
+	qcom,mdss-esync;
+	qcom,mdss-dsi-panel-esync-emsync-switch-enabled;
+
+	qcom,qsync-enable;
+	qcom,vrr-enable;
+	qcom,video-psr-enable;
+
+	//qcom,dsi-qsync-avr-disable-hw-trigger;
+	qcom,mdss-dsi-qsync-min-refresh-rate = <20>;
+	qcom,dsi-qsync-avr-step-fps = <360>;
+};
